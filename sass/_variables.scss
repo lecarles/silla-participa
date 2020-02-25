@@ -1,0 +1,50 @@
+// Typography
+$font-family-sans-serif: "Montserrat", Helvetica, arial, sans-serif;
+
+// Colors
+$primary: #b6332d;
+
+//Bootstrap Colors
+$yellow: #ffd10f;
+$orange: #f79226;
+$red: #ef404d;
+$purple: #a14a9c;
+$blue: #55a4db;
+$green: #7fc347;
+
+$light: #fff;
+$dark: rgb(24, 24, 24);
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+
+$body-bg: $light;
+$body-color: $dark;
+
+//border-radius
+$border-radius: 0.75rem;
+$border-radius-lg: 1.5rem;
+$border-radius-xl: 5rem;
+
+// Navbar
+$navbar-height: 3.5rem;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 1400px,
+  xl: 2440px
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 900px,
+  xl: 1500px
+) !default;
+
+// Boostrap variables and functions
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";

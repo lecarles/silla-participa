@@ -1,0 +1,38 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 16px;
+}
+
+
+body {
+  padding-top: $navbar-height;
+}
+
+p {
+  line-height: 1.5;
+  letter-spacing: -0.15px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.5px;
+}
+
+//links
+a {
+  color: $primary;
+  text-decoration: none;
+  transition: .25s ease-in-out;
+}
+
+
+
+
