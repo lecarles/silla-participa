@@ -58,20 +58,24 @@ export default {
       },
       subsection1: {
         title: 'Omplir únicament en cas de lloguer',
-        q1: 'Habitatge moblat',
-        q2: 'Habitatge sense mobles',
-        q3: 'Cuina equipada amb electrodomèstics',
-        q4: 'Renda màxima que podries pagar'
+        q1: {
+          op1: 'Habitatge moblat',
+          op2: 'Habitatge sense mobles'
+        },
+        q2: 'Cuina equipada amb electrodomèstics',
+        q3: 'Renda màxima que podries pagar'
       },
       subsection2: "Característiques de l'habitatge",
       q7: 'Número de dormitoris',
       q8: 'Ascensor',
       q9: 'Traster',
       q10: 'Plaça de garatge',
-      q11: 'Altura preferent',
-      q12: 'Planta baixa',
-      q13: 'Àtic',
-      q14: 'Indiferent'
+      q11: {
+        q: 'Altura preferent',
+        op1: 'Planta baixa',
+        op2: 'Àtic',
+        op3: 'Indiferent'
+      }
     }
   },
   es: {
@@ -133,20 +137,24 @@ export default {
       },
       subsection1: {
         title: 'Rellenar únicamente en caso de alquiler',
-        q1: 'Vivienda amueblada',
-        q2: 'Vivienda sin muebles',
-        q3: 'Cocina equipada con electrodomésticos',
-        q4: 'Renta máxima que podrás pagar'
+        q1: {
+          op1: 'Vivienda amueblada',
+          op2: 'Vivienda sin muebles'
+        },
+        q2: 'Cocina equipada con electrodomésticos',
+        q3: 'Renta máxima que podrás pagar'
       },
       subsection2: 'Caracteristicas de la vivienda',
       q7: 'Número de dormitorios',
       q8: 'Ascensor',
       q9: 'Trastero',
       q10: 'Plaza de garaje',
-      q11: 'Altura preferente',
-      q12: 'Planta baja',
-      q13: 'Ático',
-      q14: 'Indiferente'
+      q11: {
+        q: 'Altura preferente',
+        op1: 'Planta baja',
+        op2: 'Ático',
+        op3: 'Indiferente'
+      }
     }
   }
 }
