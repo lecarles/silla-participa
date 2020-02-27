@@ -9,7 +9,7 @@ export default {
       op5: 'Constituisc una família monoparental amb fills',
       op6: 'Sóc una persona depenent o amb discapacitat',
       op7: 'Sóc una persona separada o divorcidada',
-      op8: "Sóc una persona sense llar o procedisc dàlguna operació d'eradicació de xabolisme",
+      op8: "Sóc una persona sense llar o procedisc d'alguna operació d'eradicació de xabolisme",
       op9: 'Sóc una dona embarassada'
     },
     section2: {
