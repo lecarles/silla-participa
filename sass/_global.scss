@@ -4,12 +4,13 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 
 body {
   padding-top: $navbar-height;
+  letter-spacing: -0.15px;
 }
 
 p {
@@ -24,6 +25,11 @@ h4,
 h5,
 h6 {
   letter-spacing: -0.5px;
+  font-weight: bold;
+}
+
+h1 {
+
 }
 
 //links
