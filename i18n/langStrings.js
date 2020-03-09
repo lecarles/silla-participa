@@ -59,6 +59,7 @@ export default {
       subsection1: {
         title: 'Omplir únicament en cas de lloguer',
         q1: {
+          q: "Estat de l'habitatge",
           op1: 'Habitatge moblat',
           op2: 'Habitatge sense mobles'
         },
@@ -138,6 +139,7 @@ export default {
       subsection1: {
         title: 'Rellenar únicamente en caso de alquiler',
         q1: {
+          q: 'Estado de la vivienda',
           op1: 'Vivienda amueblada',
           op2: 'Vivienda sin muebles'
         },
