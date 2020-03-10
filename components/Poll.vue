@@ -38,6 +38,7 @@
                 id="s2q2"
                 v-model="form.s2q2"
                 type="number"
+                min="1"
                 required
               />
             </b-form-group>
@@ -47,6 +48,7 @@
               :label="$t('section2.q3')"
               label-for="s2q3"
               class="col-md-6"
+              required
             >
               <b-form-radio v-model="form.s2q3" name="s2q3" value="1">
                 Si
@@ -60,11 +62,13 @@
               :label="$t('section2.q4')"
               label-for="s2q4"
               class="col-md-6"
+              :required="form.s2q3 == 1"
             >
               <b-form-input
                 id="s2q4"
                 v-model="form.s2q4"
                 type="number"
+                min="1"
               />
             </b-form-group>
           </div>
@@ -97,6 +101,7 @@
                 id="s2q7"
                 v-model="form.s2q7"
                 type="number"
+                min="1"
                 required
               />
             </b-form-group>
@@ -161,6 +166,7 @@
               id="s3q2"
               v-model="form.s3q2"
               type="number"
+              min="1"
             />
           </b-form-group>
           <div class="row">
@@ -181,11 +187,13 @@
               :label="$t('section3.q4')"
               label-for="s3q4"
               class="col-md-6"
+              :required="form.s3q3 == 1"
             >
               <b-form-input
                 id="s3q4"
                 v-model="form.s3q4"
                 type="number"
+                min="1"
               />
             </b-form-group>
           </div>
@@ -204,6 +212,7 @@
                 :label="$t('section3.subsection1.q2')"
                 label-for="s3q6x1"
                 class="col-md-4"
+                :required="form.s3q5 > 1"
               >
                 <b-form-radio v-for="i in 2" :key="i" v-model="form.s3q6x1" name="s3q6x1" :value="i">
                   {{ $t(`section3.subsection1.q1.op${i}`) }}
@@ -213,6 +222,7 @@
                 :label="$t('section3.subsection1.q2')"
                 label-for="s3q6x2"
                 class="col-md-4"
+                :required="form.s3q5 > 1"
               >
                 <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1">
                   Si
@@ -225,11 +235,12 @@
                 :label="$t('section3.subsection1.q3')"
                 label-for="s3q6x3"
                 class="col-md-4"
+                :required="form.s3q5 > 1"
               >
                 <b-form-input
                   id="s3q6x3"
                   v-model="form.s3q6x3"
-                  type="number"
+                  type="text"
                 />
               </b-form-group>
             </div>
@@ -269,6 +280,7 @@
                 id="s3q7"
                 v-model="form.s3q7"
                 type="number"
+                min="1"
                 required
               />
             </b-form-group>
