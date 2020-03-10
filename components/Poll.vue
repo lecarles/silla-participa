@@ -5,9 +5,9 @@
     </h1>
     <b-form @submit="submitForm">
       <section class="form-section form-section-1">
-        <b-form-group :label="$t('section1.title')">
-          <b-form-checkbox-group id="checkbox-section-1" v-model="form.s1q1" name="s1q1" required>
-            <b-form-checkbox v-for="(i) in Object.keys(langStrings.ca.section1).length-1" :key="i" :value="i">
+        <b-form-group :label="$t('section1.title')" required>
+          <b-form-checkbox-group id="checkbox-section-1" v-model="form.s1q1" name="s1q1">
+            <b-form-checkbox v-for="(i) in Object.keys(langStrings.ca.section1).length-1" :key="i" :value="i" :class="{'custom-control-selected' : form.s1q1.includes(i)}">
               {{ $t(`section1.op${i}`) }}
             </b-form-checkbox>
           </b-form-checkbox-group>
@@ -50,10 +50,10 @@
               class="col-md-6"
               required
             >
-              <b-form-radio v-model="form.s2q3" name="s2q3" value="1">
+              <b-form-radio v-model="form.s2q3" name="s2q3" value="1" :class="{'custom-control-selected' : form.s2q3 == 1}">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s2q3" name="s2q3" value="0">
+              <b-form-radio v-model="form.s2q3" name="s2q3" value="0" :class="{'custom-control-selected' : form.s2q3 == 0}">
                 No
               </b-form-radio>
             </b-form-group>
@@ -78,7 +78,14 @@
             :label="$t('section2.q5.q')"
             label-for="s2q5"
           >
-            <b-form-radio v-for="i in 4" :key="i" v-model="form.s2q5" name="s2q5" :value="i">
+            <b-form-radio
+              v-for="i in 4"
+              :key="i"
+              v-model="form.s2q5"
+              name="s2q5"
+              :value="i"
+              :class="{'custom-control-selected' : form.s2q5 == i}"
+            >
               {{ $t(`section2.q5.op${i}`) }}
             </b-form-radio>
           </b-form-group>
@@ -90,7 +97,14 @@
               label-for="s2q6"
               class="col-md-6"
             >
-              <b-form-radio v-for="i in 3" :key="i" v-model="form.s2q6" name="s2q6" :value="i">
+              <b-form-radio
+                v-for="i in 3"
+                :key="i"
+                v-model="form.s2q6"
+                name="s2q6"
+                :value="i"
+                :class="{'custom-control-selected' : form.s2q6 == i}"
+              >
                 {{ $t(`section2.q6.op${i}`) }}
               </b-form-radio>
             </b-form-group>
@@ -114,10 +128,10 @@
               label-for="s2q8"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s2q8" name="s2q8" value="1">
+              <b-form-radio v-model="form.s2q8" name="s2q8" value="1" :class="{'custom-control-selected' : form.s2q8 == 1}">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s2q8" name="s2q8" value="0">
+              <b-form-radio v-model="form.s2q8" name="s2q8" value="0" :class="{'custom-control-selected' : form.s2q8 == 0}">
                 No
               </b-form-radio>
             </b-form-group>
@@ -126,10 +140,10 @@
               label-for="s2q9"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s2q9" name="s2q9" value="1">
+              <b-form-radio v-model="form.s2q9" name="s2q9" value="1" :class="{'custom-control-selected' : form.s2q9 == 1}">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s2q9" name="s2q9" value="0">
+              <b-form-radio v-model="form.s2q9" name="s2q9" value="0" :class="{'custom-control-selected' : form.s2q9 == 0}">
                 No
               </b-form-radio>
             </b-form-group>
@@ -138,10 +152,10 @@
               label-for="s2q10"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s2q10" name="s2q10" value="1">
+              <b-form-radio v-model="form.s2q10" name="s2q10" value="1" :class="{'custom-control-selected' : form.s2q10 == 1}">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s2q10" name="s2q10" value="0">
+              <b-form-radio v-model="form.s2q10" name="s2q10" value="0" :class="{'custom-control-selected' : form.s2q10 == 0}">
                 No
               </b-form-radio>
             </b-form-group>
@@ -155,7 +169,14 @@
             :label="$t('section3.q1.q')"
             label-for="s3q1"
           >
-            <b-form-radio v-for="i in 5" :key="i" v-model="form.s3q1" name="s3q1" :value="i">
+            <b-form-radio
+              v-for="i in 5"
+              :key="i"
+              v-model="form.s3q1"
+              name="s3q1"
+              :value="i"
+              :class="{'custom-control-selected' : form.s3q1 == i}"
+            >
               {{ $t(`section3.q1.op${i}`) }}
             </b-form-radio>
           </b-form-group>
@@ -177,10 +198,10 @@
               label-for="s3q3"
               class="col-md-6"
             >
-              <b-form-radio v-model="form.s3q3" name="s3q3" value="1">
+              <b-form-radio v-model="form.s3q3" name="s3q3" value="1" :class="{'custom-control-selected' : form.s3q3 == 1}">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s3q3" name="s3q3" value="0">
+              <b-form-radio v-model="form.s3q3" name="s3q3" value="0" :class="{'custom-control-selected' : form.s3q3 == 0}">
                 No
               </b-form-radio>
             </b-form-group>
@@ -205,7 +226,14 @@
             :label="$t('section3.q5.q')"
             label-for="s3q5"
           >
-            <b-form-radio v-for="i in 3" :key="i" v-model="form.s3q5" name="s3q5" :value="i">
+            <b-form-radio
+              v-for="i in 3"
+              :key="i"
+              v-model="form.s3q5"
+              name="s3q5"
+              :value="i"
+              :class="{'custom-control-selected' : form.s3q5 == i}"
+            >
               {{ $t(`section3.q5.op${i}`) }}
             </b-form-radio>
           </b-form-group>
@@ -218,7 +246,14 @@
                   class="col-md-4"
                   :required="form.s3q5 > 1"
                 >
-                  <b-form-radio v-for="i in 2" :key="i" v-model="form.s3q6x1" name="s3q6x1" :value="i">
+                  <b-form-radio
+                    v-for="i in 2"
+                    :key="i"
+                    v-model="form.s3q6x1"
+                    name="s3q6x1"
+                    :value="i"
+                    :class="{'custom-control-selected' : form.s3q6x1 == i}"
+                  >
                     {{ $t(`section3.subsection1.q1.op${i}`) }}
                   </b-form-radio>
                 </b-form-group>
@@ -228,10 +263,10 @@
                   class="col-md-4"
                   :required="form.s3q5 > 1"
                 >
-                  <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1">
+                  <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1" :class="{'custom-control-selected' : form.s3q6x2 == 1}">
                     Si
                   </b-form-radio>
-                  <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="0">
+                  <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="0" :class="{'custom-control-selected' : form.s3q6x2 == 0}">
                     No
                   </b-form-radio>
                 </b-form-group>
@@ -257,10 +292,10 @@
               label-for="s3q8"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s3q8" name="s3q8" value="1">
+              <b-form-radio v-model="form.s3q8" name="s3q8" value="1" :class="{'custom-control-selected' : form.s3q8 == 1}">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s3q8" name="s3q8" value="0">
+              <b-form-radio v-model="form.s3q8" name="s3q8" value="0" :class="{'custom-control-selected' : form.s3q8 == 0}">
                 No
               </b-form-radio>
             </b-form-group>
@@ -269,10 +304,10 @@
               label-for="s3q9"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s3q9" name="s3q9" value="1">
+              <b-form-radio v-model="form.s3q9" name="s3q9" value="1" :class="{'custom-control-selected' : form.s3q9 == 1}">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s3q9" name="s3q9" value="0">
+              <b-form-radio v-model="form.s3q9" name="s3q9" value="0" :class="{'custom-control-selected' : form.s3q9 == 0}">
                 No
               </b-form-radio>
             </b-form-group>
@@ -296,10 +331,10 @@
               label-for="s3q10"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s3q10" name="s3q10" value="1">
+              <b-form-radio v-model="form.s3q10" name="s3q10" value="1" :class="{'custom-control-selected' : form.s3q10 == 1}">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s3q10" name="s3q10" value="0">
+              <b-form-radio v-model="form.s3q10" name="s3q10" value="0" :class="{'custom-control-selected' : form.s3q10 == 0}">
                 No
               </b-form-radio>
             </b-form-group>
@@ -308,7 +343,14 @@
               label-for="s3q11"
               class="col-md-4"
             >
-              <b-form-radio v-for="i in 3" :key="i" v-model="form.s3q11" name="s3q11" :value="i">
+              <b-form-radio
+                v-for="i in 3"
+                :key="i"
+                v-model="form.s3q11"
+                name="s3q11"
+                :value="i"
+                :class="{'custom-control-selected' : form.s3q11 == i}"
+              >
                 {{ $t(`section3.q11.op${i}`) }}
               </b-form-radio>
             </b-form-group>
@@ -318,9 +360,11 @@
       <div v-if="errors.hasOwnProperty('ip')">
         {{ errors.ip }}
       </div>
-      <b-button type="submit" :class="{'disabled' : errors.hasOwnProperty('ip')}">
-        Enviar
-      </b-button>
+      <div class="form-buttons">
+        <b-button variant="primary" size="lg" type="submit" :class="{'disabled' : errors.hasOwnProperty('ip'), 'submit-btn' : true}">
+          ✉️ Enviar
+        </b-button>
+      </div>
     </b-form>
   </div>
 </template>
@@ -336,28 +380,28 @@ export default {
       langStrings,
       form: {
         s1q1: [],
-        s2q1: '',
-        s2q2: '',
-        s2q3: '',
-        s2q4: '',
-        s2q5: '',
-        s2q6: '',
-        s2q7: '',
-        s2q8: '',
-        s2q9: '',
-        s2q10: '',
-        s3q1: '',
-        s3q2: '',
-        s3q3: '',
-        s3q4: '',
-        s3q5: '',
-        s3q6x1: '',
-        s3q6x2: '',
-        s3q6x3: '',
-        s3q7: '',
-        s3q8: '',
-        s3q9: '',
-        s3q10: ''
+        s2q1: null,
+        s2q2: null,
+        s2q3: null,
+        s2q4: null,
+        s2q5: null,
+        s2q6: null,
+        s2q7: null,
+        s2q8: null,
+        s2q9: null,
+        s2q10: null,
+        s3q1: null,
+        s3q2: null,
+        s3q3: null,
+        s3q4: null,
+        s3q5: null,
+        s3q6x1: null,
+        s3q6x2: null,
+        s3q6x3: null,
+        s3q7: null,
+        s3q8: null,
+        s3q9: null,
+        s3q10: null
       },
       isLoading: false,
       errors: [],
@@ -423,6 +467,7 @@ h3 {
   align-items: center;
   transition: 0.25s ease-in-out;
   padding: 1.25rem 1.5rem 1.25rem 2.5rem;
+  border: 1.75px solid transparent;
   background: white;
   box-shadow: $default-shadow;
   border-radius: $border-radius-lg;
@@ -440,6 +485,26 @@ h3 {
     transform: translateY(-.15rem);
     box-shadow: $raised-shadow;
     color: #000;
+  }
+}
+
+.custom-control-selected {
+  .custom-control-label {
+    border-color: $primary;
+    color: $primary;
+    background: lighten($primary, 40);
+  }
+}
+
+.form-buttons {
+  margin-bottom: 3rem;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+
+  .submit-btn {
+    margin-right: 1rem;
+    width: 50%;
   }
 }
 
