@@ -48,10 +48,10 @@
               label-for="s2q3"
               class="col-md-6"
             >
-              <b-form-radio v-model="form.s2q3" name="s2q3-yes" value="1">
+              <b-form-radio v-model="form.s2q3" name="s2q3" value="1">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s2q3" name="s2q3-no" value="0">
+              <b-form-radio v-model="form.s2q3" name="s2q3" value="0">
                 No
               </b-form-radio>
             </b-form-group>
@@ -107,10 +107,10 @@
               label-for="s2q8"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s2q8" name="s2q8-yes" value="1">
+              <b-form-radio v-model="form.s2q8" name="s2q8" value="1">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s2q8" name="s2q8-no" value="0">
+              <b-form-radio v-model="form.s2q8" name="s2q8" value="0">
                 No
               </b-form-radio>
             </b-form-group>
@@ -119,10 +119,10 @@
               label-for="s2q9"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s2q9" name="s2q9-yes" value="1">
+              <b-form-radio v-model="form.s2q9" name="s2q9" value="1">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s2q9" name="s2q9-no" value="0">
+              <b-form-radio v-model="form.s2q9" name="s2q9" value="0">
                 No
               </b-form-radio>
             </b-form-group>
@@ -131,10 +131,10 @@
               label-for="s2q10"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s2q10" name="s2q10-yes" value="1">
+              <b-form-radio v-model="form.s2q10" name="s2q10" value="1">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s2q10" name="s2q10-no" value="0">
+              <b-form-radio v-model="form.s2q10" name="s2q10" value="0">
                 No
               </b-form-radio>
             </b-form-group>
@@ -214,10 +214,10 @@
                 label-for="s3q6x2"
                 class="col-md-4"
               >
-                <b-form-radio v-model="form.s3q6x2" name="s3q6x2-yes" value="1">
+                <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1">
                   Si
                 </b-form-radio>
-                <b-form-radio v-model="form.s3q6x2" name="s3q6x2-no" value="0">
+                <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="0">
                   No
                 </b-form-radio>
               </b-form-group>
@@ -241,10 +241,10 @@
               label-for="s3q8"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s3q8" name="s3q8-yes" value="1">
+              <b-form-radio v-model="form.s3q8" name="s3q8" value="1">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s3q8" name="s3q8-no" value="0">
+              <b-form-radio v-model="form.s3q8" name="s3q8" value="0">
                 No
               </b-form-radio>
             </b-form-group>
@@ -253,10 +253,10 @@
               label-for="s3q9"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s3q9" name="s3q9-yes" value="1">
+              <b-form-radio v-model="form.s3q9" name="s3q9" value="1">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s3q9" name="s3q9-no" value="0">
+              <b-form-radio v-model="form.s3q9" name="s3q9" value="0">
                 No
               </b-form-radio>
             </b-form-group>
@@ -279,10 +279,10 @@
               label-for="s3q10"
               class="col-md-4"
             >
-              <b-form-radio v-model="form.s3q10" name="s3q10-yes" value="1">
+              <b-form-radio v-model="form.s3q10" name="s3q10" value="1">
                 Si
               </b-form-radio>
-              <b-form-radio v-model="form.s3q10" name="s3q10-no" value="0">
+              <b-form-radio v-model="form.s3q10" name="s3q10" value="0">
                 No
               </b-form-radio>
             </b-form-group>
