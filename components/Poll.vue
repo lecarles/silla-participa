@@ -504,7 +504,8 @@ h3 {
 
   .submit-btn {
     margin-right: 1rem;
-    width: 50%;
+    max-width: 800px;
+    width: 100%;
   }
 }
 
