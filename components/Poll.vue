@@ -57,20 +57,22 @@
                 No
               </b-form-radio>
             </b-form-group>
-            <b-form-group
-              v-if="form.s2q3 == 1"
-              :label="$t('section2.q4')"
-              label-for="s2q4"
-              class="col-md-6"
-              :required="form.s2q3 == 1"
-            >
-              <b-form-input
-                id="s2q4"
-                v-model="form.s2q4"
-                type="number"
-                min="1"
-              />
-            </b-form-group>
+            <transition name="fade">
+              <b-form-group
+                v-if="form.s2q3 == 1"
+                :label="$t('section2.q4')"
+                label-for="s2q4"
+                class="col-md-6"
+                :required="form.s2q3 == 1"
+              >
+                <b-form-input
+                  id="s2q4"
+                  v-model="form.s2q4"
+                  type="number"
+                  min="1"
+                />
+              </b-form-group>
+            </transition>
           </div>
           <b-form-group
             :label="$t('section2.q5.q')"
@@ -182,20 +184,22 @@
                 No
               </b-form-radio>
             </b-form-group>
-            <b-form-group
-              v-if="form.s3q3 == 1"
-              :label="$t('section3.q4')"
-              label-for="s3q4"
-              class="col-md-6"
-              :required="form.s3q3 == 1"
-            >
-              <b-form-input
-                id="s3q4"
-                v-model="form.s3q4"
-                type="number"
-                min="1"
-              />
-            </b-form-group>
+            <transition name="fade">
+              <b-form-group
+                v-if="form.s3q3 == 1"
+                :label="$t('section3.q4')"
+                label-for="s3q4"
+                class="col-md-6"
+                :required="form.s3q3 == 1"
+              >
+                <b-form-input
+                  id="s3q4"
+                  v-model="form.s3q4"
+                  type="number"
+                  min="1"
+                />
+              </b-form-group>
+            </transition>
           </div>
           <b-form-group
             :label="$t('section3.q5.q')"
@@ -205,46 +209,47 @@
               {{ $t(`section3.q5.op${i}`) }}
             </b-form-radio>
           </b-form-group>
-
-          <template v-if="form.s3q5 > 1">
-            <div class="row">
-              <b-form-group
-                :label="$t('section3.subsection1.q2')"
-                label-for="s3q6x1"
-                class="col-md-4"
-                :required="form.s3q5 > 1"
-              >
-                <b-form-radio v-for="i in 2" :key="i" v-model="form.s3q6x1" name="s3q6x1" :value="i">
-                  {{ $t(`section3.subsection1.q1.op${i}`) }}
-                </b-form-radio>
-              </b-form-group>
-              <b-form-group
-                :label="$t('section3.subsection1.q2')"
-                label-for="s3q6x2"
-                class="col-md-4"
-                :required="form.s3q5 > 1"
-              >
-                <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1">
-                  Si
-                </b-form-radio>
-                <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="0">
-                  No
-                </b-form-radio>
-              </b-form-group>
-              <b-form-group
-                :label="$t('section3.subsection1.q3')"
-                label-for="s3q6x3"
-                class="col-md-4"
-                :required="form.s3q5 > 1"
-              >
-                <b-form-input
-                  id="s3q6x3"
-                  v-model="form.s3q6x3"
-                  type="text"
-                />
-              </b-form-group>
-            </div>
-          </template>
+          <transition name="fade">
+            <template v-if="form.s3q5 > 1">
+              <div class="row">
+                <b-form-group
+                  :label="$t('section3.subsection1.q2')"
+                  label-for="s3q6x1"
+                  class="col-md-4"
+                  :required="form.s3q5 > 1"
+                >
+                  <b-form-radio v-for="i in 2" :key="i" v-model="form.s3q6x1" name="s3q6x1" :value="i">
+                    {{ $t(`section3.subsection1.q1.op${i}`) }}
+                  </b-form-radio>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('section3.subsection1.q2')"
+                  label-for="s3q6x2"
+                  class="col-md-4"
+                  :required="form.s3q5 > 1"
+                >
+                  <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1">
+                    Si
+                  </b-form-radio>
+                  <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="0">
+                    No
+                  </b-form-radio>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('section3.subsection1.q3')"
+                  label-for="s3q6x3"
+                  class="col-md-4"
+                  :required="form.s3q5 > 1"
+                >
+                  <b-form-input
+                    id="s3q6x3"
+                    v-model="form.s3q6x3"
+                    type="text"
+                  />
+                </b-form-group>
+              </div>
+            </template>
+          </transition>
           <h3>{{ $t('section3.subsection2') }}</h3>
           <div class="row">
             <b-form-group
@@ -436,5 +441,14 @@ h3 {
     box-shadow: $raised-shadow;
     color: #000;
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: .3s;
+}
+
+.fade-enter, .fade-leave-to {
+  margin-top: -3rem;
+  opacity: 0;
 }
 </style>
