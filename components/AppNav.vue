@@ -3,19 +3,21 @@
     <b-navbar-brand to="/">
       <img src="../assets/logo.png" alt="Silla Participa">
     </b-navbar-brand>
-    <nuxt-link
-      v-if="$i18n.locale !== 'ca'"
-      :to="switchLocalePath('ca')"
-    >
-      Valencià
-    </nuxt-link>
+    <div class="ml-auto">
+      <nuxt-link
+        v-if="$i18n.locale !== 'ca'"
+        :to="switchLocalePath('ca')"
+      >
+        Valencià
+      </nuxt-link>
 
-    <nuxt-link
-      v-if="$i18n.locale !== 'es'"
-      :to="switchLocalePath('es')"
-    >
-      Español
-    </nuxt-link>
+      <nuxt-link
+        v-if="$i18n.locale !== 'es'"
+        :to="switchLocalePath('es')"
+      >
+        Español
+      </nuxt-link>
+    </div>
   </b-navbar>
 </template>
 
@@ -29,11 +31,11 @@ export default {
   @import '../sass/variables';
 
   .navbar-light {
-    background: $light;
-    border-bottom: 2px $primary solid;
+    background: white;
     height: $navbar-height;
     width: auto;
     padding: 1rem;
+    border-bottom: 1px solid $gray-400;
 
     .navbar-nav {
       a.nav-link {

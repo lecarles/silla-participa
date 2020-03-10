@@ -26,20 +26,19 @@ $body-bg: $light;
 $body-color: $dark;
 
 //border-radius
-$border-radius: 0.75rem;
-$border-radius-lg: 1.25rem;
+$border-radius-lg: .75rem;
 $border-radius-xl: 5rem;
 
 // Navbar
 $navbar-height: 3.5rem;
 
 // Shadows
-$default-shadow: 0 .8rem 1.7rem -.3rem rgba($dark, .15),
-    0 .5rem 1rem -.5rem rgba($dark, .2),
-    0 -.4rem 1rem -.4rem rgba($dark, .015);
-$raised-shadow: 0 1.25rem 2.1rem -.3rem rgba($dark, .15),
-    0 .9rem 1.4rem -.5rem rgba($dark, .2),
-    0 -.75rem 1.4rem -.4rem rgba($dark, .015);
+$default-shadow: 0 .5rem 1.5rem -.3rem rgba($dark, .15),
+    0 .4rem .75rem -.4rem rgba($dark, .15),
+    0 -.2rem .75rem -.3rem rgba($dark, .015);
+$raised-shadow: 0 1rem 1.7rem -.2rem rgba($dark, .1),
+    0 .8rem 1.2rem -.3rem rgba($dark, .1),
+    0 -.55rem 1.2rem -.3rem rgba($dark, .005);
 $inset-shadow: inset -2rem 0 3.1rem -1rem rgba($dark-gray, .05),
     inset -1.25rem 0 2rem -.5rem rgba($dark-gray, .2),
     inset -.75rem 0 1.5rem -.4rem rgba($dark-gray, .015);
