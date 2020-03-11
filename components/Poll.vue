@@ -74,21 +74,24 @@
               </b-form-group>
             </transition>
           </div>
-          <b-form-group
-            :label="$t('section2.q5.q')"
-            label-for="s2q5"
-          >
-            <b-form-radio
-              v-for="i in 4"
-              :key="i"
-              v-model="form.s2q5"
-              name="s2q5"
-              :value="i"
-              :class="{'custom-control-selected' : form.s2q5 == i}"
+          <div class="row">
+            <b-form-group
+              :label="$t('section2.q5.q')"
+              label-for="s2q5"
+              class="col-md-6"
             >
-              {{ $t(`section2.q5.op${i}`) }}
-            </b-form-radio>
-          </b-form-group>
+              <b-form-radio
+                v-for="i in 4"
+                :key="i"
+                v-model="form.s2q5"
+                name="s2q5"
+                :value="i"
+                :class="{'custom-control-selected' : form.s2q5 == i}"
+              >
+                {{ $t(`section2.q5.op${i}`) }}
+              </b-form-radio>
+            </b-form-group>
+          </div>
 
           <h3>{{ $t('section2.subsection') }}</h3>
           <div class="row">
@@ -165,21 +168,24 @@
 
       <section class="form-section form-section-3">
         <b-form-group :label="$t('section3.title')">
-          <b-form-group
-            :label="$t('section3.q1.q')"
-            label-for="s3q1"
-          >
-            <b-form-radio
-              v-for="i in 5"
-              :key="i"
-              v-model="form.s3q1"
-              name="s3q1"
-              :value="i"
-              :class="{'custom-control-selected' : form.s3q1 == i}"
+          <div class="row">
+            <b-form-group
+              :label="$t('section3.q1.q')"
+              label-for="s3q1"
+              class="col-md-6"
             >
-              {{ $t(`section3.q1.op${i}`) }}
-            </b-form-radio>
-          </b-form-group>
+              <b-form-radio
+                v-for="i in 5"
+                :key="i"
+                v-model="form.s3q1"
+                name="s3q1"
+                :value="i"
+                :class="{'custom-control-selected' : form.s3q1 == i}"
+              >
+                {{ $t(`section3.q1.op${i}`) }}
+              </b-form-radio>
+            </b-form-group>
+          </div>
           <b-form-group
             :label="$t('section3.q2')"
             labclass="col-md-6"
@@ -222,21 +228,24 @@
               </b-form-group>
             </transition>
           </div>
-          <b-form-group
-            :label="$t('section3.q5.q')"
-            label-for="s3q5"
-          >
-            <b-form-radio
-              v-for="i in 3"
-              :key="i"
-              v-model="form.s3q5"
-              name="s3q5"
-              :value="i"
-              :class="{'custom-control-selected' : form.s3q5 == i}"
+          <div class="row">
+            <b-form-group
+              :label="$t('section3.q5.q')"
+              label-for="s3q5"
+              class="col-md-6"
             >
-              {{ $t(`section3.q5.op${i}`) }}
-            </b-form-radio>
-          </b-form-group>
+              <b-form-radio
+                v-for="i in 3"
+                :key="i"
+                v-model="form.s3q5"
+                name="s3q5"
+                :value="i"
+                :class="{'custom-control-selected' : form.s3q5 == i}"
+              >
+                {{ $t(`section3.q5.op${i}`) }}
+              </b-form-radio>
+            </b-form-group>
+          </div>
           <transition name="fade">
             <template v-if="form.s3q5 > 1">
               <div class="row">
@@ -472,7 +481,7 @@ h3 {
   box-shadow: $default-shadow;
   border-radius: $border-radius-lg;
   cursor: pointer;
-  margin: 0.5rem;
+  margin: 0.5rem 1rem 0.5rem 0;
 
   &::before, &::after {
     position: absolute;
@@ -510,11 +519,13 @@ h3 {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: .3s;
+  transition: .4s ease-in-out;
+  max-height: 1000px;
 }
 
 .fade-enter, .fade-leave-to {
-  margin-top: -3rem;
+  max-height: 0;
+  transform: translateY(-3rem);
   opacity: 0;
 }
 </style>
