@@ -3,9 +3,9 @@
     <h1 class="title ">
       Formulari 1
     </h1>
-    <b-form @submit="submitForm">
+    <b-form @submit.prevent="submitForm">
       <section class="form-section form-section-1">
-        <b-form-group :label="$t('section1.title')" required>
+        <b-form-group :label="$t('section1.title')">
           <b-form-checkbox-group id="checkbox-section-1" v-model="form.s1q1" name="s1q1">
             <b-form-checkbox v-for="(i) in Object.keys(langStrings.ca.section1).length-1" :key="i" :value="i" :class="{'custom-control-selected' : form.s1q1.includes(i)}">
               {{ $t(`section1.op${i}`) }}
@@ -20,27 +20,22 @@
             <b-form-group
               :label="$t('section2.q1')"
               label-for="s2q1"
-              class="col-md-6"
+              class="col-md-8"
             >
               <b-form-input
                 id="s2q1"
                 v-model="form.s2q1"
                 type="text"
+                size="lg"
                 required
               />
             </b-form-group>
             <b-form-group
               :label="$t('section2.q2')"
               label-for="s2q2"
-              class="col-md-6"
+              class="col-md-4"
             >
-              <b-form-input
-                id="s2q2"
-                v-model="form.s2q2"
-                type="number"
-                min="1"
-                required
-              />
+              <b-form-spinbutton id="s2q2" v-model="form.s2q2" min="1" max="10" />
             </b-form-group>
           </div>
           <div class="row">
@@ -65,11 +60,11 @@
                 class="col-md-6"
                 :required="form.s2q3 == 1"
               >
-                <b-form-input
+                <b-form-spinbutton
                   id="s2q4"
                   v-model="form.s2q4"
-                  type="number"
                   min="1"
+                  size="lg"
                 />
               </b-form-group>
             </transition>
@@ -116,10 +111,9 @@
               label-for="s2q7"
               class="col-md-6"
             >
-              <b-form-input
+              <b-form-spinbutton
                 id="s2q7"
                 v-model="form.s2q7"
-                type="number"
                 min="1"
                 required
               />
@@ -191,10 +185,9 @@
             labclass="col-md-6"
             label-for="s3q2"
           >
-            <b-form-input
+            <b-form-spinbutton
               id="s3q2"
               v-model="form.s3q2"
-              type="number"
               min="1"
             />
           </b-form-group>
@@ -219,10 +212,9 @@
                 class="col-md-6"
                 :required="form.s3q3 == 1"
               >
-                <b-form-input
+                <b-form-spinbutton
                   id="s3q4"
                   v-model="form.s3q4"
-                  type="number"
                   min="1"
                 />
               </b-form-group>
@@ -282,14 +274,17 @@
                 <b-form-group
                   :label="$t('section3.subsection1.q3')"
                   label-for="s3q6x3"
-                  class="col-md-4"
+                  class="col-md-4 money-input"
                   :required="form.s3q5 > 1"
                 >
-                  <b-form-input
-                    id="s3q6x3"
-                    v-model="form.s3q6x3"
-                    type="text"
-                  />
+                  <b-input-group append="€">
+                    <b-form-input
+                      id="s3q6x3"
+                      v-model="form.s3q6x3"
+                      type="text"
+                      size="lg"
+                    />
+                  </b-input-group>
                 </b-form-group>
               </div>
             </template>
@@ -325,10 +320,9 @@
               label-for="s3q7"
               class="col-md-4"
             >
-              <b-form-input
+              <b-form-spinbutton
                 id="s3q7"
                 v-model="form.s3q7"
-                type="number"
                 min="1"
                 required
               />
@@ -366,9 +360,9 @@
           </div>
         </b-form-group>
       </section>
-      <div v-if="errors.hasOwnProperty('ip')">
-        {{ errors.ip }}
-      </div>
+      <b-alert v-if="errors.hasOwnProperty('ip')" show variant="danger" class="mb-4">
+        ⚠️ {{ errors.ip }}
+      </b-alert>
       <div class="form-buttons">
         <b-button variant="primary" size="lg" type="submit" :class="{'disabled' : errors.hasOwnProperty('ip'), 'submit-btn' : true}">
           ✉️ Enviar
@@ -420,10 +414,11 @@ export default {
   methods: {
     submitForm () {
       this.isLoading = true
-      this.$axios.$post('https://sillaparticipa.com/2020/api/form/register/?lang=' + this.lang, { ...this.form })
+      this.$axios.$post('https://sillaparticipa.com/2020/api/form/register/?lang=' + this.$i18n.locale, { ...this.form })
         .then((response) => {
           this.submitted = true
         }).catch((response) => {
+          console.log(response)
           this.errors = response.errors
         }).then(() => {
           this.isLoading = false
@@ -469,6 +464,29 @@ h3 {
 
 .d-block {
   margin-top: 1.5rem;
+}
+
+.money-input {
+  .input-group {
+    width: 12rem;
+  }
+
+  .form-control {
+    text-align: right;
+  }
+
+  .input-group-text {
+    border-top-right-radius: $border-radius-lg;
+    border-bottom-right-radius: $border-radius-lg;
+    font-size: 1.5rem;
+  }
+
+  &:focus-within .input-group-text {
+    background: lighten($primary, 40);
+    color: $primary;
+    border-color: #f2b5b5 !important; // shame on guillem
+    box-shadow: 0 0 0 0.2rem rgba(224, 72, 72, 0.25); // shame on guillem
+  }
 }
 
 .custom-control-label {
@@ -518,6 +536,11 @@ h3 {
   }
 }
 
+.form-control-lg {
+  padding: 2.05rem 1rem;
+  font-size: 1.5rem;
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: .4s ease-in-out;
   max-height: 1000px;
@@ -527,5 +550,18 @@ h3 {
   max-height: 0;
   transform: translateY(-3rem);
   opacity: 0;
+}
+
+// disgusting, shame on you boostrap-vue
+.b-form-spinbutton.form-control {
+  width: 12rem;
+  font-size: 2.25rem;
+  padding: 0.75rem;
+  border-radius: $border-radius-lg;
+}
+
+.b-form-spinbutton.form-control.focus {
+  border-color: #f2b5b5 !important;
+  box-shadow: 0 0 0 0.2rem rgba(224, 72, 72, 0.25);
 }
 </style>

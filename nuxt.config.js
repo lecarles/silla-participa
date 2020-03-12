@@ -43,6 +43,7 @@ export default {
   */
   modules: [
     // Doc: https://bootstrap-vue.js.org
+    '@nuxtjs/axios',
     'bootstrap-vue/nuxt',
     [
       'nuxt-i18n',
