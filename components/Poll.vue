@@ -1,374 +1,379 @@
 <template>
   <div :class="{'container': true, 'loading': isLoading }">
-    <h1 class="title ">
-      Formulari 1
-    </h1>
-    <b-form @submit.prevent="submitForm">
-      <section class="form-section form-section-1">
-        <b-form-group :label="$t('section1.title')">
-          <b-form-checkbox-group id="checkbox-section-1" v-model="form.s1q1" name="s1q1">
-            <b-form-checkbox v-for="(i) in Object.keys(langStrings.ca.section1).length-1" :key="i" :value="i" :class="{'custom-control-selected' : form.s1q1.includes(i)}">
-              {{ $t(`section1.op${i}`) }}
-            </b-form-checkbox>
-          </b-form-checkbox-group>
-        </b-form-group>
-      </section>
-
-      <section class="form-section form-section-2">
-        <b-form-group :label="$t('section2.title')">
-          <div class="row">
-            <b-form-group
-              :label="$t('section2.q1')"
-              label-for="s2q1"
-              class="col-md-8"
-            >
-              <b-form-input
-                id="s2q1"
-                v-model="form.s2q1"
-                type="text"
-                size="lg"
-                required
-              />
-            </b-form-group>
-            <b-form-group
-              :label="$t('section2.q2')"
-              label-for="s2q2"
-              class="col-md-4"
-            >
-              <b-form-spinbutton id="s2q2" v-model="form.s2q2" min="1" max="10" />
-            </b-form-group>
-          </div>
-          <div class="row">
-            <b-form-group
-              :label="$t('section2.q3')"
-              label-for="s2q3"
-              class="col-md-6"
-              required
-            >
-              <b-form-radio v-model="form.s2q3" name="s2q3" value="1" :class="{'custom-control-selected' : form.s2q3 == 1}">
-                Si
-              </b-form-radio>
-              <b-form-radio v-model="form.s2q3" name="s2q3" value="0" :class="{'custom-control-selected' : form.s2q3 == 0}">
-                No
-              </b-form-radio>
-            </b-form-group>
-            <transition name="fade">
-              <b-form-group
-                v-if="form.s2q3 == 1"
-                :label="$t('section2.q4')"
-                label-for="s2q4"
-                class="col-md-6"
-                :required="form.s2q3 == 1"
-              >
-                <b-form-spinbutton
-                  id="s2q4"
-                  v-model="form.s2q4"
-                  min="1"
-                  size="lg"
-                />
-              </b-form-group>
-            </transition>
-          </div>
-          <div class="row">
-            <b-form-group
-              :label="$t('section2.q5.q')"
-              label-for="s2q5"
-              class="col-md-6"
-            >
-              <b-form-radio
-                v-for="i in 4"
-                :key="i"
-                v-model="form.s2q5"
-                name="s2q5"
-                :value="i"
-                :class="{'custom-control-selected' : form.s2q5 == i}"
-              >
-                {{ $t(`section2.q5.op${i}`) }}
-              </b-form-radio>
-            </b-form-group>
-          </div>
-
-          <h3>{{ $t('section2.subsection') }}</h3>
-          <div class="row">
-            <b-form-group
-              :label="$t('section2.q6.q')"
-              label-for="s2q6"
-              class="col-md-6"
-            >
-              <b-form-radio
-                v-for="i in 3"
-                :key="i"
-                v-model="form.s2q6"
-                name="s2q6"
-                :value="i"
-                :class="{'custom-control-selected' : form.s2q6 == i}"
-              >
-                {{ $t(`section2.q6.op${i}`) }}
-              </b-form-radio>
-            </b-form-group>
-            <b-form-group
-              :label="$t('section2.q7')"
-              label-for="s2q7"
-              class="col-md-6"
-            >
-              <b-form-spinbutton
-                id="s2q7"
-                v-model="form.s2q7"
-                min="1"
-                required
-              />
-            </b-form-group>
-          </div>
-          <div class="row">
-            <b-form-group
-              :label="$t('section2.q8')"
-              label-for="s2q8"
-              class="col-md-4"
-            >
-              <b-form-radio v-model="form.s2q8" name="s2q8" value="1" :class="{'custom-control-selected' : form.s2q8 == 1}">
-                Si
-              </b-form-radio>
-              <b-form-radio v-model="form.s2q8" name="s2q8" value="0" :class="{'custom-control-selected' : form.s2q8 == 0}">
-                No
-              </b-form-radio>
-            </b-form-group>
-            <b-form-group
-              :label="$t('section2.q9')"
-              label-for="s2q9"
-              class="col-md-4"
-            >
-              <b-form-radio v-model="form.s2q9" name="s2q9" value="1" :class="{'custom-control-selected' : form.s2q9 == 1}">
-                Si
-              </b-form-radio>
-              <b-form-radio v-model="form.s2q9" name="s2q9" value="0" :class="{'custom-control-selected' : form.s2q9 == 0}">
-                No
-              </b-form-radio>
-            </b-form-group>
-            <b-form-group
-              :label="$t('section2.q10')"
-              label-for="s2q10"
-              class="col-md-4"
-            >
-              <b-form-radio v-model="form.s2q10" name="s2q10" value="1" :class="{'custom-control-selected' : form.s2q10 == 1}">
-                Si
-              </b-form-radio>
-              <b-form-radio v-model="form.s2q10" name="s2q10" value="0" :class="{'custom-control-selected' : form.s2q10 == 0}">
-                No
-              </b-form-radio>
-            </b-form-group>
-          </div>
-        </b-form-group>
-      </section>
-
-      <section class="form-section form-section-3">
-        <b-form-group :label="$t('section3.title')">
-          <div class="row">
-            <b-form-group
-              :label="$t('section3.q1.q')"
-              label-for="s3q1"
-              class="col-md-6"
-            >
-              <b-form-radio
-                v-for="i in 5"
-                :key="i"
-                v-model="form.s3q1"
-                name="s3q1"
-                :value="i"
-                :class="{'custom-control-selected' : form.s3q1 == i}"
-              >
-                {{ $t(`section3.q1.op${i}`) }}
-              </b-form-radio>
-            </b-form-group>
-          </div>
-          <b-form-group
-            :label="$t('section3.q2')"
-            labclass="col-md-6"
-            label-for="s3q2"
-          >
-            <b-form-spinbutton
-              id="s3q2"
-              v-model="form.s3q2"
-              min="1"
-            />
+    <div v-if="!submitted">
+      <h1 class="title ">
+        Formulari 1
+      </h1>
+      <b-form @submit.prevent="submitForm">
+        <section class="form-section form-section-1">
+          <b-form-group :label="$t('section1.title')">
+            <b-form-checkbox-group id="checkbox-section-1" v-model="form.s1q1" name="s1q1">
+              <b-form-checkbox v-for="(i) in Object.keys(langStrings.ca.section1).length-1" :key="i" :value="i" :class="{'custom-control-selected' : form.s1q1.includes(i)}">
+                {{ $t(`section1.op${i}`) }}
+              </b-form-checkbox>
+            </b-form-checkbox-group>
           </b-form-group>
-          <div class="row">
-            <b-form-group
-              :label="$t('section3.q3')"
-              label-for="s3q3"
-              class="col-md-6"
-            >
-              <b-form-radio v-model="form.s3q3" name="s3q3" value="1" :class="{'custom-control-selected' : form.s3q3 == 1}">
-                Si
-              </b-form-radio>
-              <b-form-radio v-model="form.s3q3" name="s3q3" value="0" :class="{'custom-control-selected' : form.s3q3 == 0}">
-                No
-              </b-form-radio>
-            </b-form-group>
-            <transition name="fade">
+        </section>
+
+        <section class="form-section form-section-2">
+          <b-form-group :label="$t('section2.title')">
+            <div class="row">
               <b-form-group
-                v-if="form.s3q3 == 1"
-                :label="$t('section3.q4')"
-                label-for="s3q4"
-                class="col-md-6"
-                :required="form.s3q3 == 1"
+                :label="$t('section2.q1')"
+                label-for="s2q1"
+                class="col-md-8"
               >
-                <b-form-spinbutton
-                  id="s3q4"
-                  v-model="form.s3q4"
-                  min="1"
+                <b-form-input
+                  id="s2q1"
+                  v-model="form.s2q1"
+                  type="text"
+                  size="lg"
+                  required
                 />
               </b-form-group>
-            </transition>
-          </div>
-          <div class="row">
-            <b-form-group
-              :label="$t('section3.q5.q')"
-              label-for="s3q5"
-              class="col-md-6"
-            >
-              <b-form-radio
-                v-for="i in 3"
-                :key="i"
-                v-model="form.s3q5"
-                name="s3q5"
-                :value="i"
-                :class="{'custom-control-selected' : form.s3q5 == i}"
+              <b-form-group
+                :label="$t('section2.q2')"
+                label-for="s2q2"
+                class="col-md-4"
               >
-                {{ $t(`section3.q5.op${i}`) }}
-              </b-form-radio>
-            </b-form-group>
-          </div>
-          <transition name="fade">
-            <template v-if="form.s3q5 > 1">
-              <div class="row">
+                <b-form-spinbutton id="s2q2" v-model="form.s2q2" min="1" max="10" />
+              </b-form-group>
+            </div>
+            <div class="row">
+              <b-form-group
+                :label="$t('section2.q3')"
+                label-for="s2q3"
+                class="col-md-6"
+                required
+              >
+                <b-form-radio v-model="form.s2q3" name="s2q3" value="1" :class="{'custom-control-selected' : form.s2q3 == 1}">
+                  Si
+                </b-form-radio>
+                <b-form-radio v-model="form.s2q3" name="s2q3" value="0" :class="{'custom-control-selected' : form.s2q3 == 0}">
+                  No
+                </b-form-radio>
+              </b-form-group>
+              <transition name="fade">
                 <b-form-group
-                  :label="$t('section3.subsection1.q2')"
-                  label-for="s3q6x1"
-                  class="col-md-4"
-                  :required="form.s3q5 > 1"
+                  v-if="form.s2q3 == 1"
+                  :label="$t('section2.q4')"
+                  label-for="s2q4"
+                  class="col-md-6"
+                  :required="form.s2q3 == 1"
                 >
-                  <b-form-radio
-                    v-for="i in 2"
-                    :key="i"
-                    v-model="form.s3q6x1"
-                    name="s3q6x1"
-                    :value="i"
-                    :class="{'custom-control-selected' : form.s3q6x1 == i}"
-                  >
-                    {{ $t(`section3.subsection1.q1.op${i}`) }}
-                  </b-form-radio>
+                  <b-form-spinbutton
+                    id="s2q4"
+                    v-model="form.s2q4"
+                    min="1"
+                    size="lg"
+                  />
                 </b-form-group>
-                <b-form-group
-                  :label="$t('section3.subsection1.q2')"
-                  label-for="s3q6x2"
-                  class="col-md-4"
-                  :required="form.s3q5 > 1"
+              </transition>
+            </div>
+            <div class="row">
+              <b-form-group
+                :label="$t('section2.q5.q')"
+                label-for="s2q5"
+                class="col-md-6"
+              >
+                <b-form-radio
+                  v-for="i in 4"
+                  :key="i"
+                  v-model="form.s2q5"
+                  name="s2q5"
+                  :value="i"
+                  :class="{'custom-control-selected' : form.s2q5 == i}"
                 >
-                  <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1" :class="{'custom-control-selected' : form.s3q6x2 == 1}">
-                    Si
-                  </b-form-radio>
-                  <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="0" :class="{'custom-control-selected' : form.s3q6x2 == 0}">
-                    No
-                  </b-form-radio>
-                </b-form-group>
-                <b-form-group
-                  :label="$t('section3.subsection1.q3')"
-                  label-for="s3q6x3"
-                  class="col-md-4 money-input"
-                  :required="form.s3q5 > 1"
+                  {{ $t(`section2.q5.op${i}`) }}
+                </b-form-radio>
+              </b-form-group>
+            </div>
+
+            <h3>{{ $t('section2.subsection') }}</h3>
+            <div class="row">
+              <b-form-group
+                :label="$t('section2.q6.q')"
+                label-for="s2q6"
+                class="col-md-6"
+              >
+                <b-form-radio
+                  v-for="i in 3"
+                  :key="i"
+                  v-model="form.s2q6"
+                  name="s2q6"
+                  :value="i"
+                  :class="{'custom-control-selected' : form.s2q6 == i}"
                 >
-                  <b-input-group append="€">
-                    <b-form-input
-                      id="s3q6x3"
-                      v-model="form.s3q6x3"
-                      type="text"
-                      size="lg"
-                    />
-                  </b-input-group>
-                </b-form-group>
-              </div>
-            </template>
-          </transition>
-          <h3>{{ $t('section3.subsection2') }}</h3>
-          <div class="row">
+                  {{ $t(`section2.q6.op${i}`) }}
+                </b-form-radio>
+              </b-form-group>
+              <b-form-group
+                :label="$t('section2.q7')"
+                label-for="s2q7"
+                class="col-md-6"
+              >
+                <b-form-spinbutton
+                  id="s2q7"
+                  v-model="form.s2q7"
+                  min="1"
+                  required
+                />
+              </b-form-group>
+            </div>
+            <div class="row">
+              <b-form-group
+                :label="$t('section2.q8')"
+                label-for="s2q8"
+                class="col-md-4"
+              >
+                <b-form-radio v-model="form.s2q8" name="s2q8" value="1" :class="{'custom-control-selected' : form.s2q8 == 1}">
+                  Si
+                </b-form-radio>
+                <b-form-radio v-model="form.s2q8" name="s2q8" value="0" :class="{'custom-control-selected' : form.s2q8 == 0}">
+                  No
+                </b-form-radio>
+              </b-form-group>
+              <b-form-group
+                :label="$t('section2.q9')"
+                label-for="s2q9"
+                class="col-md-4"
+              >
+                <b-form-radio v-model="form.s2q9" name="s2q9" value="1" :class="{'custom-control-selected' : form.s2q9 == 1}">
+                  Si
+                </b-form-radio>
+                <b-form-radio v-model="form.s2q9" name="s2q9" value="0" :class="{'custom-control-selected' : form.s2q9 == 0}">
+                  No
+                </b-form-radio>
+              </b-form-group>
+              <b-form-group
+                :label="$t('section2.q10')"
+                label-for="s2q10"
+                class="col-md-4"
+              >
+                <b-form-radio v-model="form.s2q10" name="s2q10" value="1" :class="{'custom-control-selected' : form.s2q10 == 1}">
+                  Si
+                </b-form-radio>
+                <b-form-radio v-model="form.s2q10" name="s2q10" value="0" :class="{'custom-control-selected' : form.s2q10 == 0}">
+                  No
+                </b-form-radio>
+              </b-form-group>
+            </div>
+          </b-form-group>
+        </section>
+
+        <section class="form-section form-section-3">
+          <b-form-group :label="$t('section3.title')">
+            <div class="row">
+              <b-form-group
+                :label="$t('section3.q1.q')"
+                label-for="s3q1"
+                class="col-md-6"
+              >
+                <b-form-radio
+                  v-for="i in 5"
+                  :key="i"
+                  v-model="form.s3q1"
+                  name="s3q1"
+                  :value="i"
+                  :class="{'custom-control-selected' : form.s3q1 == i}"
+                >
+                  {{ $t(`section3.q1.op${i}`) }}
+                </b-form-radio>
+              </b-form-group>
+            </div>
             <b-form-group
-              :label="$t('section3.q8')"
-              label-for="s3q8"
-              class="col-md-4"
-            >
-              <b-form-radio v-model="form.s3q8" name="s3q8" value="1" :class="{'custom-control-selected' : form.s3q8 == 1}">
-                Si
-              </b-form-radio>
-              <b-form-radio v-model="form.s3q8" name="s3q8" value="0" :class="{'custom-control-selected' : form.s3q8 == 0}">
-                No
-              </b-form-radio>
-            </b-form-group>
-            <b-form-group
-              :label="$t('section3.q9')"
-              label-for="s3q9"
-              class="col-md-4"
-            >
-              <b-form-radio v-model="form.s3q9" name="s3q9" value="1" :class="{'custom-control-selected' : form.s3q9 == 1}">
-                Si
-              </b-form-radio>
-              <b-form-radio v-model="form.s3q9" name="s3q9" value="0" :class="{'custom-control-selected' : form.s3q9 == 0}">
-                No
-              </b-form-radio>
-            </b-form-group>
-            <b-form-group
-              :label="$t('section3.q7')"
-              label-for="s3q7"
-              class="col-md-4"
+              :label="$t('section3.q2')"
+              labclass="col-md-6"
+              label-for="s3q2"
             >
               <b-form-spinbutton
-                id="s3q7"
-                v-model="form.s3q7"
+                id="s3q2"
+                v-model="form.s3q2"
                 min="1"
-                required
               />
             </b-form-group>
-          </div>
-          <div class="row">
-            <b-form-group
-              :label="$t('section3.q10')"
-              label-for="s3q10"
-              class="col-md-4"
-            >
-              <b-form-radio v-model="form.s3q10" name="s3q10" value="1" :class="{'custom-control-selected' : form.s3q10 == 1}">
-                Si
-              </b-form-radio>
-              <b-form-radio v-model="form.s3q10" name="s3q10" value="0" :class="{'custom-control-selected' : form.s3q10 == 0}">
-                No
-              </b-form-radio>
-            </b-form-group>
-            <b-form-group
-              :label="$t('section3.q11.q')"
-              label-for="s3q11"
-              class="col-md-4"
-            >
-              <b-form-radio
-                v-for="i in 3"
-                :key="i"
-                v-model="form.s3q11"
-                name="s3q11"
-                :value="i"
-                :class="{'custom-control-selected' : form.s3q11 == i}"
+            <div class="row">
+              <b-form-group
+                :label="$t('section3.q3')"
+                label-for="s3q3"
+                class="col-md-6"
               >
-                {{ $t(`section3.q11.op${i}`) }}
-              </b-form-radio>
-            </b-form-group>
-          </div>
-        </b-form-group>
-      </section>
-      <b-alert v-if="errors.hasOwnProperty('ip')" show variant="danger" class="mb-4">
-        ⚠️ {{ errors.ip }}
-      </b-alert>
-      <div class="form-buttons">
-        <b-button variant="primary" size="lg" type="submit" :class="{'disabled' : errors.hasOwnProperty('ip'), 'submit-btn' : true}">
-          ✉️ Enviar
-        </b-button>
-      </div>
-    </b-form>
+                <b-form-radio v-model="form.s3q3" name="s3q3" value="1" :class="{'custom-control-selected' : form.s3q3 == 1}">
+                  Si
+                </b-form-radio>
+                <b-form-radio v-model="form.s3q3" name="s3q3" value="0" :class="{'custom-control-selected' : form.s3q3 == 0}">
+                  No
+                </b-form-radio>
+              </b-form-group>
+              <transition name="fade">
+                <b-form-group
+                  v-if="form.s3q3 == 1"
+                  :label="$t('section3.q4')"
+                  label-for="s3q4"
+                  class="col-md-6"
+                  :required="form.s3q3 == 1"
+                >
+                  <b-form-spinbutton
+                    id="s3q4"
+                    v-model="form.s3q4"
+                    min="1"
+                  />
+                </b-form-group>
+              </transition>
+            </div>
+            <div class="row">
+              <b-form-group
+                :label="$t('section3.q5.q')"
+                label-for="s3q5"
+                class="col-md-6"
+              >
+                <b-form-radio
+                  v-for="i in 3"
+                  :key="i"
+                  v-model="form.s3q5"
+                  name="s3q5"
+                  :value="i"
+                  :class="{'custom-control-selected' : form.s3q5 == i}"
+                >
+                  {{ $t(`section3.q5.op${i}`) }}
+                </b-form-radio>
+              </b-form-group>
+            </div>
+            <transition name="fade">
+              <template v-if="form.s3q5 > 1">
+                <div class="row">
+                  <b-form-group
+                    :label="$t('section3.subsection1.q2')"
+                    label-for="s3q6x1"
+                    class="col-md-4"
+                    :required="form.s3q5 > 1"
+                  >
+                    <b-form-radio
+                      v-for="i in 2"
+                      :key="i"
+                      v-model="form.s3q6x1"
+                      name="s3q6x1"
+                      :value="i"
+                      :class="{'custom-control-selected' : form.s3q6x1 == i}"
+                    >
+                      {{ $t(`section3.subsection1.q1.op${i}`) }}
+                    </b-form-radio>
+                  </b-form-group>
+                  <b-form-group
+                    :label="$t('section3.subsection1.q2')"
+                    label-for="s3q6x2"
+                    class="col-md-4"
+                    :required="form.s3q5 > 1"
+                  >
+                    <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1" :class="{'custom-control-selected' : form.s3q6x2 == 1}">
+                      Si
+                    </b-form-radio>
+                    <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="0" :class="{'custom-control-selected' : form.s3q6x2 == 0}">
+                      No
+                    </b-form-radio>
+                  </b-form-group>
+                  <b-form-group
+                    :label="$t('section3.subsection1.q3')"
+                    label-for="s3q6x3"
+                    class="col-md-4 money-input"
+                    :required="form.s3q5 > 1"
+                  >
+                    <b-input-group append="€">
+                      <b-form-input
+                        id="s3q6x3"
+                        v-model="form.s3q6x3"
+                        type="text"
+                        size="lg"
+                      />
+                    </b-input-group>
+                  </b-form-group>
+                </div>
+              </template>
+            </transition>
+            <h3>{{ $t('section3.subsection2') }}</h3>
+            <div class="row">
+              <b-form-group
+                :label="$t('section3.q8')"
+                label-for="s3q8"
+                class="col-md-4"
+              >
+                <b-form-radio v-model="form.s3q8" name="s3q8" value="1" :class="{'custom-control-selected' : form.s3q8 == 1}">
+                  Si
+                </b-form-radio>
+                <b-form-radio v-model="form.s3q8" name="s3q8" value="0" :class="{'custom-control-selected' : form.s3q8 == 0}">
+                  No
+                </b-form-radio>
+              </b-form-group>
+              <b-form-group
+                :label="$t('section3.q9')"
+                label-for="s3q9"
+                class="col-md-4"
+              >
+                <b-form-radio v-model="form.s3q9" name="s3q9" value="1" :class="{'custom-control-selected' : form.s3q9 == 1}">
+                  Si
+                </b-form-radio>
+                <b-form-radio v-model="form.s3q9" name="s3q9" value="0" :class="{'custom-control-selected' : form.s3q9 == 0}">
+                  No
+                </b-form-radio>
+              </b-form-group>
+              <b-form-group
+                :label="$t('section3.q7')"
+                label-for="s3q7"
+                class="col-md-4"
+              >
+                <b-form-spinbutton
+                  id="s3q7"
+                  v-model="form.s3q7"
+                  min="1"
+                  required
+                />
+              </b-form-group>
+            </div>
+            <div class="row">
+              <b-form-group
+                :label="$t('section3.q10')"
+                label-for="s3q10"
+                class="col-md-4"
+              >
+                <b-form-radio v-model="form.s3q10" name="s3q10" value="1" :class="{'custom-control-selected' : form.s3q10 == 1}">
+                  Si
+                </b-form-radio>
+                <b-form-radio v-model="form.s3q10" name="s3q10" value="0" :class="{'custom-control-selected' : form.s3q10 == 0}">
+                  No
+                </b-form-radio>
+              </b-form-group>
+              <b-form-group
+                :label="$t('section3.q11.q')"
+                label-for="s3q11"
+                class="col-md-4"
+              >
+                <b-form-radio
+                  v-for="i in 3"
+                  :key="i"
+                  v-model="form.s3q11"
+                  name="s3q11"
+                  :value="i"
+                  :class="{'custom-control-selected' : form.s3q11 == i}"
+                >
+                  {{ $t(`section3.q11.op${i}`) }}
+                </b-form-radio>
+              </b-form-group>
+            </div>
+          </b-form-group>
+        </section>
+        <b-alert v-if="errors.hasOwnProperty('ip')" show variant="danger" class="mb-4">
+          ⚠️ {{ errors.ip }}
+        </b-alert>
+        <div class="form-buttons">
+          <b-button variant="primary" size="lg" type="submit" :class="{'disabled' : errors.hasOwnProperty('ip'), 'submit-btn' : true}">
+            ✉️ Enviar
+          </b-button>
+        </div>
+      </b-form>
+    </div>
+    <div v-else>
+      submitted
+    </div>
   </div>
 </template>
 
@@ -418,7 +423,6 @@ export default {
         .then((response) => {
           this.submitted = true
         }).catch((response) => {
-          console.log(response)
           this.errors = response.errors
         }).then(() => {
           this.isLoading = false
