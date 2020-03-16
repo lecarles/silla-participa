@@ -1,4 +1,5 @@
-import langStrings from './i18n/langStrings.js'
+import ca from './i18n/ca.js'
+import es from './i18n/es.js'
 
 export default {
   mode: 'universal',
@@ -53,7 +54,7 @@ export default {
         defaultLocale: 'ca',
         vueI18n: {
           fallbackLocale: 'ca',
-          messages: langStrings
+          messages: { ca, es }
         }
       }
     ]
