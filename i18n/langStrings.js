@@ -77,6 +77,11 @@ export default {
         op2: 'Àtic',
         op3: 'Indiferent'
       }
+    },
+    form: {
+      button: 'Envia formulari',
+      errors: 'Alguns camps tenen errors. Revisa els camps en roig i torna a enviar-lo.',
+      servererror: 'No s\'ha pogut enviar el formulari, intenta-ho més tard'
     }
   },
   es: {
@@ -157,6 +162,11 @@ export default {
         op2: 'Ático',
         op3: 'Indiferente'
       }
+    },
+    form: {
+      button: 'Enviar formulario',
+      errors: 'Alguns camps tenen errors. Revisa els camps en roig i torna a enviar-lo.',
+      servererror: 'No s\'ha pogut enviar el formulari, intenta-ho més tard'
     }
   }
 }
