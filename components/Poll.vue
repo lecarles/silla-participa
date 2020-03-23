@@ -4,11 +4,20 @@
       <h1 class="title ">
         Formulari 1
       </h1>
+      <b-alert v-if="errors.hasOwnProperty('ip')" show variant="danger" class="mb-4">
+        ⚠️ {{ errors.ip }}
+      </b-alert>
+      <b-alert v-else-if="errors.hasOwnProperty('global')" show variant="danger" class="mb-4">
+        ⚠️ {{ errors.global }}
+      </b-alert>
+      <b-alert v-else-if="Object.keys(errors).length > 0" show variant="danger" class="mb-4">
+        ⚠️ {{ $t('form.errors') }}
+      </b-alert>
       <b-form @submit.prevent="submitForm">
         <section class="form-section form-section-1">
           <b-form-group :label="$t('section1.title')">
             <b-form-checkbox-group id="checkbox-section-1" v-model="form.s1q1" name="s1q1">
-              <b-form-checkbox v-for="(i) in Object.keys(langStrings.ca.section1).length-1" :key="i" :value="i" :class="{'custom-control-selected' : form.s1q1.includes(i)}">
+              <b-form-checkbox v-for="(i) in Object.keys($t('section1')).length-1" :key="i" :value="i" :class="{'custom-control-selected' : form.s1q1.includes(i)}">
                 {{ $t(`section1.op${i}`) }}
               </b-form-checkbox>
             </b-form-checkbox-group>
@@ -361,12 +370,9 @@
             </div>
           </b-form-group>
         </section>
-        <b-alert v-if="errors.hasOwnProperty('ip')" show variant="danger" class="mb-4">
-          ⚠️ {{ errors.ip }}
-        </b-alert>
         <div class="form-buttons">
           <b-button variant="primary" size="lg" type="submit" :class="{'disabled' : errors.hasOwnProperty('ip'), 'submit-btn' : true}">
-            ✉️ Enviar
+            ✉️ {{ $t('form.button') }}
           </b-button>
         </div>
       </b-form>
@@ -378,14 +384,11 @@
 </template>
 
 <script>
-import langStrings from '../i18n/langStrings'
-
 export default {
   name: 'Poll',
 
   data () {
     return {
-      langStrings,
       form: {
         s1q1: [],
         s2q1: null,
@@ -419,14 +422,41 @@ export default {
   methods: {
     submitForm () {
       this.isLoading = true
-      this.$axios.$post('https://sillaparticipa.com/2020/api/form/register/?lang=' + this.$i18n.locale, { ...this.form })
-        .then((response) => {
+
+      this.$axios({
+        url: 'https://sillaparticipa.com/2020/api/form/register/?lang=' + this.$i18n.locale,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: this.encode(this.form)
+      }).then((response) => {
+        return response.json()
+      }).then((response) => {
+        if (response.success) {
           this.submitted = true
-        }).catch((response) => {
+        } else {
           this.errors = response.errors
-        }).then(() => {
-          this.isLoading = false
+        }
+      }).catch(() => {
+        this.errors = {
+          global: this.$t('form.servererror')
+        }
+      }).then(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         })
+        this.isLoading = false
+      })
+    },
+
+    encode (data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${data[key] ? encodeURIComponent(data[key]) : ''}`
+        )
+        .join('&')
     }
   }
 }

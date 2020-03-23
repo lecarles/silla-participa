@@ -1,4 +1,5 @@
-import langStrings from './i18n/langStrings.js'
+import ca from './i18n/ca.js'
+import es from './i18n/es.js'
 
 export default {
   mode: 'universal',
@@ -13,7 +14,8 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap' }
     ]
   },
   /*
@@ -52,7 +54,7 @@ export default {
         defaultLocale: 'ca',
         vueI18n: {
           fallbackLocale: 'ca',
-          messages: langStrings
+          messages: { ca, es }
         }
       }
     ]

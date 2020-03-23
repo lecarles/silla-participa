@@ -4,26 +4,36 @@
       <img src="../assets/logo.png" alt="Silla Participa">
     </b-navbar-brand>
     <div class="ml-auto">
-      <nuxt-link
+      <a
         v-if="$i18n.locale !== 'ca'"
-        :to="switchLocalePath('ca')"
+        href="/"
+        @click.prevent="localeChange('ca')"
       >
         Valencià
-      </nuxt-link>
+      </a>
 
-      <nuxt-link
+      <a
         v-if="$i18n.locale !== 'es'"
-        :to="switchLocalePath('es')"
+        href="/es"
+        @click.prevent="localeChange('es')"
       >
-        Español
-      </nuxt-link>
+        Castellano
+      </a>
     </div>
   </b-navbar>
 </template>
 
 <script>
 export default {
-  name: 'AppNav'
+  name: 'AppNav',
+
+  methods: {
+    localeChange (newLocale) {
+      this.$i18n.locale = newLocale
+      const name = (newLocale === 'ca') ? this.$route.name.replace(/___es/g, '___ca') : this.$route.name.replace(/___ca/g, '___es')
+      this.$router.push({ name })
+    }
+  }
 }
 </script>
 
