@@ -371,9 +371,9 @@
         </div>
       </b-form>
     </div>
-    <div v-else>
-      submitted
-    </div>
+    <b-alert v-else show variant="success" class="mb-4">
+      ✔️ La teua resposta s'ha enviat correctament.
+    </b-alert>
   </div>
 </template>
 
@@ -567,5 +567,9 @@ h3 {
 .b-form-spinbutton.form-control.focus {
   border-color: #f2b5b5 !important;
   box-shadow: 0 0 0 0.2rem rgba(224, 72, 72, 0.25);
+}
+
+.alert {
+  font-size: 1.5rem;
 }
 </style>
