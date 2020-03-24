@@ -31,12 +31,14 @@
                 :label="$t('section2.q1')"
                 label-for="s2q1"
                 class="col-md-8"
+                :state="errors.hasOwnProperty('s2q1') ? false : null"
               >
                 <b-form-input
                   id="s2q1"
                   v-model="form.s2q1"
                   type="text"
                   size="lg"
+                  :state="errors.hasOwnProperty('s2q1') ? false : null"
                   required
                 />
               </b-form-group>
@@ -431,12 +433,12 @@ export default {
         },
         data: this.encode(this.form)
       }).then((response) => {
-        return response.json()
+        return response
       }).then((response) => {
-        if (response.success) {
+        if (response.data.success) {
           this.submitted = true
         } else {
-          this.errors = response.errors
+          this.errors = response.data.errors
         }
       }).catch(() => {
         this.errors = {
