@@ -80,6 +80,7 @@ export default {
   form: {
     button: 'Envia formulari',
     errors: 'Alguns camps tenen errors. Revisa els camps en roig i torna a enviar-lo.',
-    servererror: 'No s\'ha pogut enviar el formulari, intenta-ho més tard'
+    servererror: 'No s\'ha pogut enviar el formulari, intenta-ho més tard',
+    required: 'Aquest camp és obligatori'
   }
 }

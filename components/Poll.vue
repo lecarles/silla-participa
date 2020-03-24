@@ -57,12 +57,15 @@
                 class="col-md-6"
                 required
               >
-                <b-form-radio v-model="form.s2q3" name="s2q3" value="1" :class="{'custom-control-selected' : form.s2q3 == 1}">
-                  Si
+                <b-form-radio v-model="form.s2q3" name="s2q3" value="1" :class="{'custom-control-selected' : form.s2q3 == 1}" :state="errors.hasOwnProperty('s2q3') ? false : null">
+                  Sí
                 </b-form-radio>
-                <b-form-radio v-model="form.s2q3" name="s2q3" value="0" :class="{'custom-control-selected' : form.s2q3 == 0}">
+                <b-form-radio v-model="form.s2q3" name="s2q3" value="0" :class="{'custom-control-selected' : form.s2q3 == 0}" :state="errors.hasOwnProperty('s2q3') ? false : null">
                   No
                 </b-form-radio>
+                <b-form-invalid-feedback v-if="errors.hasOwnProperty('s2q3')" :state="false">
+                  {{ $t('form.required') }}
+                </b-form-invalid-feedback>
               </b-form-group>
               <transition name="fade">
                 <b-form-group
