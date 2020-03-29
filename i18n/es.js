@@ -40,7 +40,7 @@ export default {
     title: 'Datos de la vivienda protegida que te gustaría tener',
     q1: {
       q: 'En cuál de estos barrios te gustaría vivir?',
-      op1: "L'alfaró",
+      op1: "L'Alfaró",
       op2: 'El Rajolar',
       op3: 'El Silvestre',
       op4: 'La Bega',

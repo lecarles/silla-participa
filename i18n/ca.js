@@ -40,7 +40,7 @@ export default {
     title: "Dades de l'habitatge protegit que t'agradaria tindre",
     q1: {
       q: "En quin d'aquests barris t'agradaria viure?",
-      op1: "L'alfaró",
+      op1: "L'Alfaró",
       op2: 'El Rajolar',
       op3: 'El Silvestre',
       op4: 'La Bega',

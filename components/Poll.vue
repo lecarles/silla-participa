@@ -183,17 +183,30 @@
                 label-for="s3q1"
                 class="col-md-6"
               >
-                <b-form-radio
+                <div
                   v-for="i in 5"
                   :key="i"
-                  v-model="form.s3q1"
-                  name="s3q1"
-                  :value="i"
-                  :class="{'custom-control-selected' : form.s3q1 == i}"
+                  @mouseover="hoveringDistrict = i"
+                  @mouseleave="hoveringDistrict = null"
                 >
-                  {{ $t(`section3.q1.op${i}`) }}
-                </b-form-radio>
+                  <b-form-radio
+                    v-model="form.s3q1"
+                    name="s3q1"
+                    :value="i"
+                    :class="{'custom-control-selected': form.s3q1 === i || hoveringFromMap === i, 'hovering-from-map': hoveringFromMap === i && form.s3q1 !== i }"
+                  >
+                    {{ $t(`section3.q1.op${i}`) }}
+                  </b-form-radio>
+                </div>
               </b-form-group>
+              <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
+                <districts
+                  :hovering-district="hoveringDistrict"
+                  :selected-district="form.s3q1"
+                  @hover="(district) => { hoveringDistrict = district; hoveringFromMap = district }"
+                  @select="(district) => form.s3q1 = district"
+                />
+              </div>
             </div>
             <b-form-group
               :label="$t('section3.q2')"
@@ -389,8 +402,14 @@
 </template>
 
 <script>
+import Districts from './Districts'
+
 export default {
   name: 'Poll',
+
+  components: {
+    Districts
+  },
 
   data () {
     return {
@@ -421,7 +440,9 @@ export default {
       },
       isLoading: false,
       errors: [],
-      submitted: false
+      submitted: false,
+      hoveringDistrict: null,
+      hoveringFromMap: null
     }
   },
   methods: {
@@ -552,6 +573,10 @@ h3 {
     box-shadow: $raised-shadow;
     color: #000;
   }
+}
+
+.hovering-from-map {
+  opacity: .75;
 }
 
 .custom-control-selected {
