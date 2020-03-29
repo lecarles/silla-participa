@@ -199,10 +199,11 @@
                   </b-form-radio>
                 </div>
               </b-form-group>
-              <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
+              <div class="col-md-6 d-flex mt-4 mt-md-0 align-items-center justify-content-center">
                 <districts
                   :hovering-district="hoveringDistrict"
                   :selected-district="form.s3q1"
+                  style="max-width: 100%"
                   @hover="(district) => { hoveringDistrict = district; hoveringFromMap = district }"
                   @select="(district) => form.s3q1 = district"
                 />
