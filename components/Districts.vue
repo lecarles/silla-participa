@@ -166,10 +166,11 @@ export default {
 
   .hovering {
     fill: lighten($primary, 40);
+    stroke: $primary;
   }
 
   .selected {
-    fill: lighten($primary, 40);
-    stroke: $primary;
+    fill: $primary;
+    stroke: darken($primary, 15);
   }
 </style>
