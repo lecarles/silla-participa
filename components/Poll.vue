@@ -4,6 +4,7 @@
       <app-header />
     </div>
     <div :class="{'container': true, 'loading': isLoading }">
+      <submitting v-if="isLoading" />
       <div v-if="!submitted">
         <b-alert v-if="errors.hasOwnProperty('ip')" show variant="warning" class="my-4">
           ⚠️ {{ errors.ip }}
@@ -406,6 +407,7 @@
 import AppHeader from './AppHeader'
 import Districts from './Districts'
 import Success from './Success'
+import Submitting from './Submitting'
 
 export default {
   name: 'Poll',
@@ -413,7 +415,8 @@ export default {
   components: {
     AppHeader,
     Districts,
-    Success
+    Success,
+    Submitting
   },
 
   data () {
@@ -630,30 +633,5 @@ h3 {
 
 .alert {
   font-size: 1.25rem;
-}
-
-.loading-overlay {
-  display: flex;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  background: rgba(255, 255, 255, .75);
-  color: $gray-800;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  .animation {
-    width: 80px;
-  }
-
-  p {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: 1rem;
-  }
 }
 </style>

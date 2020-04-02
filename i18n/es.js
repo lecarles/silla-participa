@@ -81,7 +81,8 @@ export default {
     button: 'Enviar formulario',
     errors: 'Alguns camps tenen errors. Revisa els camps en roig i torna a enviar-lo.',
     servererror: 'No s\'ha pogut enviar el formulari, intenta-ho més tard',
-    required: 'Este campo es obligatorio'
+    required: 'Este campo es obligatorio',
+    submitting: 'Enviando formulario...'
   },
   success: {
     heading: 'Gracias por participar',

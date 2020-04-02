@@ -5,7 +5,7 @@
         <img src="../assets/img/silla-ajuntament.gif" alt="Ajuntament de Silla">
       </div>
       <div class="footer-info">
-        <p class="font-weight-bold">
+        <p class="footer-title">
           Ajuntament de Silla
         </p>
         <p>Plaça del Poble 1, 46460 Silla - Apartat de correus 399. - Tel: 96 120 01 16 - Fax: 96 121 22 23</p>
@@ -29,15 +29,19 @@ export default {
   margin-top: 1rem;
   border-top: 1px solid $gray-400;
 
+  &-title {
+    font-weight: 600;
+  }
+
   &-items {
     padding: 2.5rem 0;
     display: flex;
     align-items: center;
 
-  img {
-    width: 140px;
-    margin-right: 2rem;
-  }
+    img {
+      width: 140px;
+      margin-right: 2rem;
+    }
 
     p {
       font-size: 1rem;
