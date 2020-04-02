@@ -1,6 +1,5 @@
 <template>
   <div class="footer">
-    <hr>
     <div class="container footer-items">
       <div class="footer-logo">
         <img src="../assets/img/silla-ajuntament.gif" alt="Ajuntament de Silla">
@@ -23,9 +22,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../sass/variables';
+
 .footer {
   background: white;
   margin-top: 1rem;
+  border-top: 1px solid $gray-400;
 
   &-items {
     padding: 2.5rem 0;

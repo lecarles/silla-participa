@@ -1,415 +1,419 @@
 <template>
-  <div :class="{'container': true, 'loading': isLoading }">
+  <div>
     <div v-if="!submitted">
-      <h1 class="title ">
-        Formulari 1
-      </h1>
-      <b-alert v-if="errors.hasOwnProperty('ip')" show variant="danger" class="mb-4">
-        ⚠️ {{ errors.ip }}
-      </b-alert>
-      <b-alert v-else-if="errors.hasOwnProperty('global')" show variant="danger" class="mb-4">
-        ⚠️ {{ errors.global }}
-      </b-alert>
-      <b-alert v-else-if="Object.keys(errors).length > 0" show variant="danger" class="mb-4">
-        ⚠️ {{ $t('form.errors') }}
-      </b-alert>
-      <b-form @submit.prevent="submitForm">
-        <section class="form-section form-section-1">
-          <b-form-group :label="$t('section1.title')">
-            <b-form-checkbox-group id="checkbox-section-1" v-model="form.s1q1" name="s1q1">
-              <b-form-checkbox v-for="(i) in Object.keys($t('section1')).length-1" :key="i" :value="i" :class="{'custom-control-selected' : form.s1q1.includes(i)}">
-                {{ $t(`section1.op${i}`) }}
-              </b-form-checkbox>
-            </b-form-checkbox-group>
-          </b-form-group>
-        </section>
+      <app-header />
+    </div>
+    <div :class="{'container': true, 'loading': isLoading }">
+      <div v-if="!submitted">
+        <b-alert v-if="errors.hasOwnProperty('ip')" show variant="warning" class="my-4">
+          ⚠️ {{ errors.ip }}
+        </b-alert>
+        <b-alert v-else-if="errors.hasOwnProperty('global')" show variant="danger" class="my-4">
+          ⚠️ {{ errors.global }}
+        </b-alert>
+        <b-alert v-else-if="Object.keys(errors).length > 0" show variant="warning" class="my-4">
+          ⚠️ {{ $t('form.errors') }}
+        </b-alert>
+        <b-form @submit.prevent="submitForm">
+          <section class="form-section form-section-1">
+            <b-form-group :label="$t('section1.title')">
+              <b-form-checkbox-group id="checkbox-section-1" v-model="form.s1q1" name="s1q1">
+                <b-form-checkbox v-for="(i) in Object.keys($t('section1')).length-1" :key="i" :value="i" :class="{'custom-control-selected' : form.s1q1.includes(i)}">
+                  {{ $t(`section1.op${i}`) }}
+                </b-form-checkbox>
+              </b-form-checkbox-group>
+            </b-form-group>
+          </section>
 
-        <section class="form-section form-section-2">
-          <b-form-group :label="$t('section2.title')">
-            <div class="row">
-              <b-form-group
-                :label="$t('section2.q1')"
-                label-for="s2q1"
-                class="col-md-8"
-                :state="errors.hasOwnProperty('s2q1') ? false : null"
-              >
-                <b-form-input
-                  id="s2q1"
-                  v-model="form.s2q1"
-                  type="text"
-                  size="lg"
-                  :state="errors.hasOwnProperty('s2q1') ? false : null"
-                  required
-                />
-              </b-form-group>
-              <b-form-group
-                :label="$t('section2.q2')"
-                label-for="s2q2"
-                class="col-md-4"
-              >
-                <b-form-spinbutton id="s2q2" v-model="form.s2q2" min="1" max="10" />
-              </b-form-group>
-            </div>
-            <div class="row">
-              <b-form-group
-                :label="$t('section2.q3')"
-                label-for="s2q3"
-                class="col-md-6"
-                required
-              >
-                <b-form-radio v-model="form.s2q3" name="s2q3" value="1" :class="{'custom-control-selected' : form.s2q3 == 1}" :state="errors.hasOwnProperty('s2q3') ? false : null">
-                  Sí
-                </b-form-radio>
-                <b-form-radio v-model="form.s2q3" name="s2q3" value="0" :class="{'custom-control-selected' : form.s2q3 == 0}" :state="errors.hasOwnProperty('s2q3') ? false : null">
-                  No
-                </b-form-radio>
-                <b-form-invalid-feedback v-if="errors.hasOwnProperty('s2q3')" :state="false">
-                  {{ $t('form.required') }}
-                </b-form-invalid-feedback>
-              </b-form-group>
-              <transition name="fade">
+          <section class="form-section form-section-2">
+            <b-form-group :label="$t('section2.title')">
+              <div class="row">
                 <b-form-group
-                  v-if="form.s2q3 == 1"
-                  :label="$t('section2.q4')"
-                  label-for="s2q4"
-                  class="col-md-6"
-                  :required="form.s2q3 == 1"
+                  :label="$t('section2.q1')"
+                  label-for="s2q1"
+                  class="col-md-8"
+                  :state="errors.hasOwnProperty('s2q1') ? false : null"
                 >
-                  <b-form-spinbutton
-                    id="s2q4"
-                    v-model="form.s2q4"
-                    min="1"
+                  <b-form-input
+                    id="s2q1"
+                    v-model="form.s2q1"
+                    type="text"
                     size="lg"
+                    :state="errors.hasOwnProperty('s2q1') ? false : null"
+                    required
                   />
                 </b-form-group>
-              </transition>
-            </div>
-            <div class="row">
-              <b-form-group
-                :label="$t('section2.q5.q')"
-                label-for="s2q5"
-                class="col-md-6"
-              >
-                <b-form-radio
-                  v-for="i in 4"
-                  :key="i"
-                  v-model="form.s2q5"
-                  name="s2q5"
-                  :value="i"
-                  :class="{'custom-control-selected' : form.s2q5 == i}"
+                <b-form-group
+                  :label="$t('section2.q2')"
+                  label-for="s2q2"
+                  class="col-md-4"
                 >
-                  {{ $t(`section2.q5.op${i}`) }}
-                </b-form-radio>
-              </b-form-group>
-            </div>
-
-            <h3>{{ $t('section2.subsection') }}</h3>
-            <div class="row">
-              <b-form-group
-                :label="$t('section2.q6.q')"
-                label-for="s2q6"
-                class="col-md-6"
-              >
-                <b-form-radio
-                  v-for="i in 3"
-                  :key="i"
-                  v-model="form.s2q6"
-                  name="s2q6"
-                  :value="i"
-                  :class="{'custom-control-selected' : form.s2q6 == i}"
-                >
-                  {{ $t(`section2.q6.op${i}`) }}
-                </b-form-radio>
-              </b-form-group>
-              <b-form-group
-                :label="$t('section2.q7')"
-                label-for="s2q7"
-                class="col-md-6"
-              >
-                <b-form-spinbutton
-                  id="s2q7"
-                  v-model="form.s2q7"
-                  min="1"
+                  <b-form-spinbutton id="s2q2" v-model="form.s2q2" min="1" max="10" />
+                </b-form-group>
+              </div>
+              <div class="row">
+                <b-form-group
+                  :label="$t('section2.q3')"
+                  label-for="s2q3"
+                  class="col-md-6"
                   required
-                />
-              </b-form-group>
-            </div>
-            <div class="row">
-              <b-form-group
-                :label="$t('section2.q8')"
-                label-for="s2q8"
-                class="col-md-4"
-              >
-                <b-form-radio v-model="form.s2q8" name="s2q8" value="1" :class="{'custom-control-selected' : form.s2q8 == 1}">
-                  Si
-                </b-form-radio>
-                <b-form-radio v-model="form.s2q8" name="s2q8" value="0" :class="{'custom-control-selected' : form.s2q8 == 0}">
-                  No
-                </b-form-radio>
-              </b-form-group>
-              <b-form-group
-                :label="$t('section2.q9')"
-                label-for="s2q9"
-                class="col-md-4"
-              >
-                <b-form-radio v-model="form.s2q9" name="s2q9" value="1" :class="{'custom-control-selected' : form.s2q9 == 1}">
-                  Si
-                </b-form-radio>
-                <b-form-radio v-model="form.s2q9" name="s2q9" value="0" :class="{'custom-control-selected' : form.s2q9 == 0}">
-                  No
-                </b-form-radio>
-              </b-form-group>
-              <b-form-group
-                :label="$t('section2.q10')"
-                label-for="s2q10"
-                class="col-md-4"
-              >
-                <b-form-radio v-model="form.s2q10" name="s2q10" value="1" :class="{'custom-control-selected' : form.s2q10 == 1}">
-                  Si
-                </b-form-radio>
-                <b-form-radio v-model="form.s2q10" name="s2q10" value="0" :class="{'custom-control-selected' : form.s2q10 == 0}">
-                  No
-                </b-form-radio>
-              </b-form-group>
-            </div>
-          </b-form-group>
-        </section>
-
-        <section class="form-section form-section-3">
-          <b-form-group :label="$t('section3.title')">
-            <div class="row">
-              <b-form-group
-                :label="$t('section3.q1.q')"
-                label-for="s3q1"
-                class="col-md-6"
-              >
-                <div
-                  v-for="i in 5"
-                  :key="i"
-                  @mouseover="hoveringDistrict = i"
-                  @mouseleave="hoveringDistrict = null"
+                >
+                  <b-form-radio v-model="form.s2q3" name="s2q3" value="1" :class="{'custom-control-selected' : form.s2q3 == 1}" :state="errors.hasOwnProperty('s2q3') ? false : null">
+                    Sí
+                  </b-form-radio>
+                  <b-form-radio v-model="form.s2q3" name="s2q3" value="0" :class="{'custom-control-selected' : form.s2q3 == 0}" :state="errors.hasOwnProperty('s2q3') ? false : null">
+                    No
+                  </b-form-radio>
+                  <b-form-invalid-feedback v-if="errors.hasOwnProperty('s2q3')" :state="false">
+                    {{ $t('form.required') }}
+                  </b-form-invalid-feedback>
+                </b-form-group>
+                <transition name="fade">
+                  <b-form-group
+                    v-if="form.s2q3 == 1"
+                    :label="$t('section2.q4')"
+                    label-for="s2q4"
+                    class="col-md-6"
+                    :required="form.s2q3 == 1"
+                  >
+                    <b-form-spinbutton
+                      id="s2q4"
+                      v-model="form.s2q4"
+                      min="1"
+                      size="lg"
+                    />
+                  </b-form-group>
+                </transition>
+              </div>
+              <div class="row">
+                <b-form-group
+                  :label="$t('section2.q5.q')"
+                  label-for="s2q5"
+                  class="col-md-6"
                 >
                   <b-form-radio
-                    v-model="form.s3q1"
-                    name="s3q1"
+                    v-for="i in 4"
+                    :key="i"
+                    v-model="form.s2q5"
+                    name="s2q5"
                     :value="i"
-                    :class="{'custom-control-selected': form.s3q1 === i || hoveringFromMap === i, 'hovering-from-map': hoveringFromMap === i && form.s3q1 !== i }"
+                    :class="{'custom-control-selected' : form.s2q5 == i}"
                   >
-                    {{ $t(`section3.q1.op${i}`) }}
+                    {{ $t(`section2.q5.op${i}`) }}
                   </b-form-radio>
-                </div>
-              </b-form-group>
-              <div class="col-md-6 d-flex mt-4 mt-md-0 align-items-center justify-content-center">
-                <districts
-                  :hovering-district="hoveringDistrict"
-                  :selected-district="form.s3q1"
-                  style="max-width: 100%"
-                  @hover="(district) => { hoveringDistrict = district; hoveringFromMap = district }"
-                  @select="(district) => form.s3q1 = district"
-                />
+                </b-form-group>
               </div>
-            </div>
-            <b-form-group
-              :label="$t('section3.q2')"
-              labclass="col-md-6"
-              label-for="s3q2"
-            >
-              <b-form-spinbutton
-                id="s3q2"
-                v-model="form.s3q2"
-                min="1"
-              />
-            </b-form-group>
-            <div class="row">
-              <b-form-group
-                :label="$t('section3.q3')"
-                label-for="s3q3"
-                class="col-md-6"
-              >
-                <b-form-radio v-model="form.s3q3" name="s3q3" value="1" :class="{'custom-control-selected' : form.s3q3 == 1}">
-                  Si
-                </b-form-radio>
-                <b-form-radio v-model="form.s3q3" name="s3q3" value="0" :class="{'custom-control-selected' : form.s3q3 == 0}">
-                  No
-                </b-form-radio>
-              </b-form-group>
-              <transition name="fade">
+
+              <h3>{{ $t('section2.subsection') }}</h3>
+              <div class="row">
                 <b-form-group
-                  v-if="form.s3q3 == 1"
-                  :label="$t('section3.q4')"
-                  label-for="s3q4"
+                  :label="$t('section2.q6.q')"
+                  label-for="s2q6"
                   class="col-md-6"
-                  :required="form.s3q3 == 1"
+                >
+                  <b-form-radio
+                    v-for="i in 3"
+                    :key="i"
+                    v-model="form.s2q6"
+                    name="s2q6"
+                    :value="i"
+                    :class="{'custom-control-selected' : form.s2q6 == i}"
+                  >
+                    {{ $t(`section2.q6.op${i}`) }}
+                  </b-form-radio>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('section2.q7')"
+                  label-for="s2q7"
+                  class="col-md-6"
                 >
                   <b-form-spinbutton
-                    id="s3q4"
-                    v-model="form.s3q4"
+                    id="s2q7"
+                    v-model="form.s2q7"
                     min="1"
+                    required
                   />
                 </b-form-group>
-              </transition>
-            </div>
-            <div class="row">
-              <b-form-group
-                :label="$t('section3.q5.q')"
-                label-for="s3q5"
-                class="col-md-6"
-              >
-                <b-form-radio
-                  v-for="i in 3"
-                  :key="i"
-                  v-model="form.s3q5"
-                  name="s3q5"
-                  :value="i"
-                  :class="{'custom-control-selected' : form.s3q5 == i}"
+              </div>
+              <div class="row">
+                <b-form-group
+                  :label="$t('section2.q8')"
+                  label-for="s2q8"
+                  class="col-md-4"
                 >
-                  {{ $t(`section3.q5.op${i}`) }}
-                </b-form-radio>
-              </b-form-group>
-            </div>
-            <transition name="fade">
-              <template v-if="form.s3q5 > 1">
-                <div class="row">
-                  <b-form-group
-                    :label="$t('section3.subsection1.q2')"
-                    label-for="s3q6x1"
-                    class="col-md-4"
-                    :required="form.s3q5 > 1"
+                  <b-form-radio v-model="form.s2q8" name="s2q8" value="1" :class="{'custom-control-selected' : form.s2q8 == 1}">
+                    Si
+                  </b-form-radio>
+                  <b-form-radio v-model="form.s2q8" name="s2q8" value="0" :class="{'custom-control-selected' : form.s2q8 == 0}">
+                    No
+                  </b-form-radio>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('section2.q9')"
+                  label-for="s2q9"
+                  class="col-md-4"
+                >
+                  <b-form-radio v-model="form.s2q9" name="s2q9" value="1" :class="{'custom-control-selected' : form.s2q9 == 1}">
+                    Si
+                  </b-form-radio>
+                  <b-form-radio v-model="form.s2q9" name="s2q9" value="0" :class="{'custom-control-selected' : form.s2q9 == 0}">
+                    No
+                  </b-form-radio>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('section2.q10')"
+                  label-for="s2q10"
+                  class="col-md-4"
+                >
+                  <b-form-radio v-model="form.s2q10" name="s2q10" value="1" :class="{'custom-control-selected' : form.s2q10 == 1}">
+                    Si
+                  </b-form-radio>
+                  <b-form-radio v-model="form.s2q10" name="s2q10" value="0" :class="{'custom-control-selected' : form.s2q10 == 0}">
+                    No
+                  </b-form-radio>
+                </b-form-group>
+              </div>
+            </b-form-group>
+          </section>
+
+          <section class="form-section form-section-3">
+            <b-form-group :label="$t('section3.title')">
+              <div class="row">
+                <b-form-group
+                  :label="$t('section3.q1.q')"
+                  label-for="s3q1"
+                  class="col-md-6"
+                >
+                  <div
+                    v-for="i in 5"
+                    :key="i"
+                    @mouseover="hoveringDistrict = i"
+                    @mouseleave="hoveringDistrict = null"
                   >
                     <b-form-radio
-                      v-for="i in 2"
-                      :key="i"
-                      v-model="form.s3q6x1"
-                      name="s3q6x1"
+                      v-model="form.s3q1"
+                      name="s3q1"
                       :value="i"
-                      :class="{'custom-control-selected' : form.s3q6x1 == i}"
+                      :class="{'custom-control-selected': form.s3q1 === i || hoveringFromMap === i, 'hovering-from-map': hoveringFromMap === i && form.s3q1 !== i }"
                     >
-                      {{ $t(`section3.subsection1.q1.op${i}`) }}
+                      {{ $t(`section3.q1.op${i}`) }}
                     </b-form-radio>
-                  </b-form-group>
-                  <b-form-group
-                    :label="$t('section3.subsection1.q2')"
-                    label-for="s3q6x2"
-                    class="col-md-4"
-                    :required="form.s3q5 > 1"
-                  >
-                    <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1" :class="{'custom-control-selected' : form.s3q6x2 == 1}">
-                      Si
-                    </b-form-radio>
-                    <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="0" :class="{'custom-control-selected' : form.s3q6x2 == 0}">
-                      No
-                    </b-form-radio>
-                  </b-form-group>
-                  <b-form-group
-                    :label="$t('section3.subsection1.q3')"
-                    label-for="s3q6x3"
-                    class="col-md-4 money-input"
-                    :required="form.s3q5 > 1"
-                  >
-                    <b-input-group append="€">
-                      <b-form-input
-                        id="s3q6x3"
-                        v-model="form.s3q6x3"
-                        type="text"
-                        size="lg"
-                      />
-                    </b-input-group>
-                  </b-form-group>
+                  </div>
+                </b-form-group>
+                <div class="col-md-6 d-flex mt-4 mt-md-0 align-items-center justify-content-center">
+                  <districts
+                    :hovering-district="hoveringDistrict"
+                    :selected-district="form.s3q1"
+                    @hover="(district) => { hoveringDistrict = district; hoveringFromMap = district }"
+                    @select="(district) => form.s3q1 = district"
+                  />
                 </div>
-              </template>
-            </transition>
-            <h3>{{ $t('section3.subsection2') }}</h3>
-            <div class="row">
+              </div>
               <b-form-group
-                :label="$t('section3.q8')"
-                label-for="s3q8"
-                class="col-md-4"
-              >
-                <b-form-radio v-model="form.s3q8" name="s3q8" value="1" :class="{'custom-control-selected' : form.s3q8 == 1}">
-                  Si
-                </b-form-radio>
-                <b-form-radio v-model="form.s3q8" name="s3q8" value="0" :class="{'custom-control-selected' : form.s3q8 == 0}">
-                  No
-                </b-form-radio>
-              </b-form-group>
-              <b-form-group
-                :label="$t('section3.q9')"
-                label-for="s3q9"
-                class="col-md-4"
-              >
-                <b-form-radio v-model="form.s3q9" name="s3q9" value="1" :class="{'custom-control-selected' : form.s3q9 == 1}">
-                  Si
-                </b-form-radio>
-                <b-form-radio v-model="form.s3q9" name="s3q9" value="0" :class="{'custom-control-selected' : form.s3q9 == 0}">
-                  No
-                </b-form-radio>
-              </b-form-group>
-              <b-form-group
-                :label="$t('section3.q7')"
-                label-for="s3q7"
-                class="col-md-4"
+                :label="$t('section3.q2')"
+                labclass="col-md-6"
+                label-for="s3q2"
               >
                 <b-form-spinbutton
-                  id="s3q7"
-                  v-model="form.s3q7"
+                  id="s3q2"
+                  v-model="form.s3q2"
                   min="1"
-                  required
                 />
               </b-form-group>
-            </div>
-            <div class="row">
-              <b-form-group
-                :label="$t('section3.q10')"
-                label-for="s3q10"
-                class="col-md-4"
-              >
-                <b-form-radio v-model="form.s3q10" name="s3q10" value="1" :class="{'custom-control-selected' : form.s3q10 == 1}">
-                  Si
-                </b-form-radio>
-                <b-form-radio v-model="form.s3q10" name="s3q10" value="0" :class="{'custom-control-selected' : form.s3q10 == 0}">
-                  No
-                </b-form-radio>
-              </b-form-group>
-              <b-form-group
-                :label="$t('section3.q11.q')"
-                label-for="s3q11"
-                class="col-md-4"
-              >
-                <b-form-radio
-                  v-for="i in 3"
-                  :key="i"
-                  v-model="form.s3q11"
-                  name="s3q11"
-                  :value="i"
-                  :class="{'custom-control-selected' : form.s3q11 == i}"
+              <div class="row">
+                <b-form-group
+                  :label="$t('section3.q3')"
+                  label-for="s3q3"
+                  class="col-md-6"
                 >
-                  {{ $t(`section3.q11.op${i}`) }}
-                </b-form-radio>
-              </b-form-group>
-            </div>
-          </b-form-group>
-        </section>
-        <div class="form-buttons">
-          <b-button variant="primary" size="lg" type="submit" :class="{'disabled' : errors.hasOwnProperty('ip'), 'submit-btn' : true}">
-            ✉️ {{ $t('form.button') }}
-          </b-button>
-        </div>
-      </b-form>
+                  <b-form-radio v-model="form.s3q3" name="s3q3" value="1" :class="{'custom-control-selected' : form.s3q3 == 1}">
+                    Si
+                  </b-form-radio>
+                  <b-form-radio v-model="form.s3q3" name="s3q3" value="0" :class="{'custom-control-selected' : form.s3q3 == 0}">
+                    No
+                  </b-form-radio>
+                </b-form-group>
+                <transition name="fade">
+                  <b-form-group
+                    v-if="form.s3q3 == 1"
+                    :label="$t('section3.q4')"
+                    label-for="s3q4"
+                    class="col-md-6"
+                    :required="form.s3q3 == 1"
+                  >
+                    <b-form-spinbutton
+                      id="s3q4"
+                      v-model="form.s3q4"
+                      min="1"
+                    />
+                  </b-form-group>
+                </transition>
+              </div>
+              <div class="row">
+                <b-form-group
+                  :label="$t('section3.q5.q')"
+                  label-for="s3q5"
+                  class="col-md-6"
+                >
+                  <b-form-radio
+                    v-for="i in 3"
+                    :key="i"
+                    v-model="form.s3q5"
+                    name="s3q5"
+                    :value="i"
+                    :class="{'custom-control-selected' : form.s3q5 == i}"
+                  >
+                    {{ $t(`section3.q5.op${i}`) }}
+                  </b-form-radio>
+                </b-form-group>
+              </div>
+              <transition name="fade">
+                <template v-if="form.s3q5 > 1">
+                  <div class="row">
+                    <b-form-group
+                      :label="$t('section3.subsection1.q2')"
+                      label-for="s3q6x1"
+                      class="col-md-4"
+                      :required="form.s3q5 > 1"
+                    >
+                      <b-form-radio
+                        v-for="i in 2"
+                        :key="i"
+                        v-model="form.s3q6x1"
+                        name="s3q6x1"
+                        :value="i"
+                        :class="{'custom-control-selected' : form.s3q6x1 == i}"
+                      >
+                        {{ $t(`section3.subsection1.q1.op${i}`) }}
+                      </b-form-radio>
+                    </b-form-group>
+                    <b-form-group
+                      :label="$t('section3.subsection1.q2')"
+                      label-for="s3q6x2"
+                      class="col-md-4"
+                      :required="form.s3q5 > 1"
+                    >
+                      <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="1" :class="{'custom-control-selected' : form.s3q6x2 == 1}">
+                        Si
+                      </b-form-radio>
+                      <b-form-radio v-model="form.s3q6x2" name="s3q6x2" value="0" :class="{'custom-control-selected' : form.s3q6x2 == 0}">
+                        No
+                      </b-form-radio>
+                    </b-form-group>
+                    <b-form-group
+                      :label="$t('section3.subsection1.q3')"
+                      label-for="s3q6x3"
+                      class="col-md-4 money-input"
+                      :required="form.s3q5 > 1"
+                    >
+                      <b-input-group append="€">
+                        <b-form-input
+                          id="s3q6x3"
+                          v-model="form.s3q6x3"
+                          type="text"
+                          size="lg"
+                        />
+                      </b-input-group>
+                    </b-form-group>
+                  </div>
+                </template>
+              </transition>
+              <h3>{{ $t('section3.subsection2') }}</h3>
+              <div class="row">
+                <b-form-group
+                  :label="$t('section3.q8')"
+                  label-for="s3q8"
+                  class="col-md-4"
+                >
+                  <b-form-radio v-model="form.s3q8" name="s3q8" value="1" :class="{'custom-control-selected' : form.s3q8 == 1}">
+                    Si
+                  </b-form-radio>
+                  <b-form-radio v-model="form.s3q8" name="s3q8" value="0" :class="{'custom-control-selected' : form.s3q8 == 0}">
+                    No
+                  </b-form-radio>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('section3.q9')"
+                  label-for="s3q9"
+                  class="col-md-4"
+                >
+                  <b-form-radio v-model="form.s3q9" name="s3q9" value="1" :class="{'custom-control-selected' : form.s3q9 == 1}">
+                    Si
+                  </b-form-radio>
+                  <b-form-radio v-model="form.s3q9" name="s3q9" value="0" :class="{'custom-control-selected' : form.s3q9 == 0}">
+                    No
+                  </b-form-radio>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('section3.q7')"
+                  label-for="s3q7"
+                  class="col-md-4"
+                >
+                  <b-form-spinbutton
+                    id="s3q7"
+                    v-model="form.s3q7"
+                    min="1"
+                    required
+                  />
+                </b-form-group>
+              </div>
+              <div class="row">
+                <b-form-group
+                  :label="$t('section3.q10')"
+                  label-for="s3q10"
+                  class="col-md-4"
+                >
+                  <b-form-radio v-model="form.s3q10" name="s3q10" value="1" :class="{'custom-control-selected' : form.s3q10 == 1}">
+                    Si
+                  </b-form-radio>
+                  <b-form-radio v-model="form.s3q10" name="s3q10" value="0" :class="{'custom-control-selected' : form.s3q10 == 0}">
+                    No
+                  </b-form-radio>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('section3.q11.q')"
+                  label-for="s3q11"
+                  class="col-md-4"
+                >
+                  <b-form-radio
+                    v-for="i in 3"
+                    :key="i"
+                    v-model="form.s3q11"
+                    name="s3q11"
+                    :value="i"
+                    :class="{'custom-control-selected' : form.s3q11 == i}"
+                  >
+                    {{ $t(`section3.q11.op${i}`) }}
+                  </b-form-radio>
+                </b-form-group>
+              </div>
+            </b-form-group>
+          </section>
+          <div class="form-buttons">
+            <b-button variant="primary" size="lg" type="submit" :class="{'disabled' : errors.hasOwnProperty('ip') || isLoading, 'submit-btn' : true}">
+              ✉️ {{ $t('form.button') }}
+            </b-button>
+          </div>
+        </b-form>
+      </div>
+      <success v-else />
     </div>
-    <b-alert v-else show variant="success" class="mb-4">
-      ✔️ La teua resposta s'ha enviat correctament.
-    </b-alert>
+  </div>
   </div>
 </template>
 
 <script>
+import AppHeader from './AppHeader'
 import Districts from './Districts'
+import Success from './Success'
 
 export default {
   name: 'Poll',
 
   components: {
-    Districts
+    AppHeader,
+    Districts,
+    Success
   },
 
   data () {
@@ -495,24 +499,18 @@ export default {
 h3 {
   font-size: 1.25rem;
   margin-top: 2.5rem;
-}
-
-.title {
-  color: $primary;
-  padding: 2rem;
-  background-color: lighten($primary, 40);
-  border-radius: $border-radius-lg;
+  font-weight: 600;
 }
 
 .form-section {
   margin-bottom: 1rem;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 
 .col-form-label {
   color: $primary;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .custom-control {
@@ -631,6 +629,31 @@ h3 {
 }
 
 .alert {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.loading-overlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, .75);
+  color: $gray-800;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .animation {
+    width: 80px;
+  }
+
+  p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
 }
 </style>

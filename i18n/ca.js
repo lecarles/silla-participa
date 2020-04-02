@@ -82,5 +82,10 @@ export default {
     errors: 'Alguns camps tenen errors. Revisa els camps en roig i torna a enviar-lo.',
     servererror: 'No s\'ha pogut enviar el formulari, intenta-ho més tard',
     required: 'Aquest camp és obligatori'
+  },
+  success: {
+    heading: 'Gràcies per participar-hi',
+    text: 'Hem rebut les teues respostes correctament.',
+    cta: 'Continua a Silla.es'
   }
 }

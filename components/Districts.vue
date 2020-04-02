@@ -161,6 +161,10 @@ export default {
 <style lang="scss">
   @import "../sass/variables";
 
+  svg {
+    max-width: 100%;
+  }
+
   .district {
     fill: $white;
     stroke: $dark-gray;

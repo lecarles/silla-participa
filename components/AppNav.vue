@@ -1,24 +1,26 @@
 <template>
   <b-navbar toggleable="md" type="light" fixed="top">
-    <b-navbar-brand to="/">
-      <img src="../assets/logo.png" alt="Silla Participa">
-    </b-navbar-brand>
-    <div class="ml-auto">
-      <a
-        v-if="$i18n.locale !== 'ca'"
-        href="/"
-        @click.prevent="localeChange('ca')"
-      >
-        Valencià
-      </a>
+    <div class="container">
+      <b-navbar-brand to="/">
+        <img src="../assets/img/logo.png" alt="Silla Participa">
+      </b-navbar-brand>
+      <div class="ml-auto">
+        <a
+          v-if="$i18n.locale !== 'ca'"
+          href="/"
+          @click.prevent="localeChange('ca')"
+        >
+          Valencià
+        </a>
 
-      <a
-        v-if="$i18n.locale !== 'es'"
-        href="/es"
-        @click.prevent="localeChange('es')"
-      >
-        Castellano
-      </a>
+        <a
+          v-if="$i18n.locale !== 'es'"
+          href="/es"
+          @click.prevent="localeChange('es')"
+        >
+          Castellano
+        </a>
+      </div>
     </div>
   </b-navbar>
 </template>
@@ -45,7 +47,7 @@ export default {
     height: $navbar-height;
     width: auto;
     padding: 1rem;
-    border-bottom: 1px solid $gray-400;
+    border-bottom: 1px mix($primary, $white, 50%) solid;
 
     .navbar-nav {
       a.nav-link {
